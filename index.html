@@ -14,7 +14,8 @@
 <aside>
   <h2>출발 위치 설정</h2><p class="sub">참가자 위치를 입력하고 검색해 선택하세요. 선택한 위치를 기준으로 근처 후보 역만 지도에 표시됩니다.</p>
   <div id="participants"></div>
-  <div class="partActions"><button class="secondary" id="add">+ 참가자 추가</button><button class="outline" id="mine">📍 내 현재 위치</button></div>
+  <div class="partActions"><button class="secondary" id="add">+ 참가자 추가</button><button class="outline" id="mine">📍 내 현재 위치</button><button class="outline" id="manual">🖱️ 지도에서 직접 지정</button></div>
+  <p class="hint">PC의 위치는 IP·Wi-Fi 기반으로 부정확할 수 있어요. 지도에서 직접 지정하면 1번 참가자의 출발지로 설정됩니다.</p>
   <section class="section">
     <h2>후보 검색 범위</h2>
     <div class="controls"><input id="buffer" type="range" min="0" max="15" step="0.5" value="3"><b id="bufferVal">3 km</b></div>
@@ -34,12 +35,13 @@
 <script>
 // 중요: 카카오디벨로퍼스의 Default JS Key(웹 JavaScript 키)만 입력하세요.
 // REST API 키 / Admin 키를 이 파일에 넣지 마세요.
-const KAKAO_JS_KEY = '4e65c131766c8aee76696d7f9167c6cc';
+const KAKAO_JS_KEY = 'YOUR_JS_KEY';
 const DATA_FILE = './jigeum_manna_station_candidates_101.json';
 
 let map, placesService, polygonDrawing, lineDrawing, rangeDrawing;
 let userMarkers = [], stationMarkers = [], infowindows = [], allPlaces = [];
 let persons = [], nextPersonId = 1, coordsById = {};
+let manualLocationMode = false, accuracyCircle = null;
 const $ = id => document.getElementById(id);
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const setStatus = text => $('status').textContent = text;
@@ -61,7 +63,15 @@ function loadKakao(){
         allPlaces=dataset.places;
         setStatus('101개 후보 목록을 불러왔어요. 참가자 출발 위치를 검색해서 선택하세요.');
       }catch(e){setStatus('후보 JSON을 읽을 수 없습니다. JSON 파일을 index.html과 같은 위치에 올렸는지 확인하세요. ('+e.message+')');}
-      kakao.maps.event.addListener(map,'click',()=>infowindows.forEach(i=>i.close()));
+      kakao.maps.event.addListener(map,'click', event=>{
+        infowindows.forEach(i=>i.close());
+        if(!manualLocationMode)return;
+        const point=event.latLng;
+        setFirstPersonLocation(point.getLat(),point.getLng(),'지도에서 지정한 위치');
+        manualLocationMode=false; $('manual').textContent='🖱️ 지도에서 직접 지정';
+        if(accuracyCircle){accuracyCircle.setMap(null);accuracyCircle=null;}
+        setStatus('지도에서 지정한 위치를 1번 참가자의 출발지로 설정했어요.');
+      });
     });
   };
   script.onerror=()=>setStatus('카카오맵 SDK 요청이 실패했어요. JS 키와 SDK 도메인을 확인하세요.');
@@ -220,12 +230,32 @@ async function findCandidates(){
   running=false;$('find').disabled=false;
 }
 $('add').addEventListener('click',addPerson);
+function setFirstPersonLocation(lat,lng,name){
+  if(!persons.length)addPerson();
+  const p=persons[0];p.lat=lat;p.lng=lng;p.name=name;
+  renderPersons();drawPersons();
+}
+$('manual').addEventListener('click',()=>{
+  manualLocationMode=!manualLocationMode;
+  $('manual').textContent=manualLocationMode?'취소':'🖱️ 지도에서 직접 지정';
+  setStatus(manualLocationMode?'지도에서 실제 출발 위치를 한 번 클릭해 주세요. (1번 참가자에 적용)':'지도에서 위치 지정이 취소됐어요.');
+});
 $('mine').addEventListener('click',()=>{
-  if(!navigator.geolocation){setStatus('이 브라우저는 위치 기능을 지원하지 않습니다.');return;}
-  setStatus('브라우저에서 위치 권한을 허용해 주세요.');
+  if(!navigator.geolocation){setStatus('이 브라우저는 위치 기능을 지원하지 않습니다. 지도에서 직접 지정해 주세요.');return;}
+  manualLocationMode=false;$('manual').textContent='🖱️ 지도에서 직접 지정';
+  setStatus('브라우저 위치를 조회 중이에요. 위치 권한을 허용해 주세요.');
   navigator.geolocation.getCurrentPosition(pos=>{
-    if(!persons.length)addPerson();const p=persons[0];p.lat=pos.coords.latitude;p.lng=pos.coords.longitude;p.name='현재 위치';renderPersons();drawPersons();setStatus('1번 참가자의 현재 위치를 설정했어요.');
-  },err=>setStatus('위치를 가져오지 못했어요: '+err.message),{enableHighAccuracy:true,timeout:12000});
+    const {latitude:lat,longitude:lng,accuracy}=pos.coords;
+    const km=(accuracy/1000).toFixed(1);
+    setFirstPersonLocation(lat,lng,'현재 위치 (자동 감지)');
+    if(accuracyCircle)accuracyCircle.setMap(null);
+    accuracyCircle=new kakao.maps.Circle({map,center:new kakao.maps.LatLng(lat,lng),radius:accuracy,strokeWeight:2,strokeColor:'#2563eb',strokeOpacity:0.65,fillColor:'#93c5fd',fillOpacity:0.13});
+    if(accuracy>1000){
+      setStatus('⚠️ 감지된 위치의 오차 반경은 약 '+km+'km예요. PC나 Wi-Fi 환경에 따라 실제와 다를 수 있어요. 지도에서 직접 지정하는 것을 권장해요.');
+    }else{
+      setStatus('현재 위치를 설정했어요. 브라우저가 보고한 정확도: 약 '+Math.round(accuracy)+'m 반경. 파란 원은 위치 오차 범위예요.');
+    }
+  },err=>setStatus('위치를 가져오지 못했어요: '+err.message+'\n지도에서 직접 지정할 수 있어요.'),{enableHighAccuracy:true,timeout:20000,maximumAge:0});
 });
 $('buffer').addEventListener('input',()=>{$('bufferVal').textContent=$('buffer').value+' km';});
 $('find').addEventListener('click',findCandidates);
