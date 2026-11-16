@@ -1,49 +1,235 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>지금 만나</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
-
-    header {
-      padding: 20px;
-      background: #ffffff;
-    }
-
-    h1 {
-      margin: 0;
-    }
-
-    #map {
-      width: 100%;
-      height: 80vh;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>지금 만나 | 공평한 만남 장소 찾기</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#17243a;background:#f4f7fb}*{box-sizing:border-box}body{margin:0}header{height:68px;background:white;border-bottom:1px solid #e8eef5;display:flex;align-items:center;justify-content:space-between;padding:0 24px}header h1{font-size:23px;margin:0;color:#215cd3}header span{font-size:12px;color:#64748b}.layout{display:grid;grid-template-columns:minmax(320px,380px) 1fr;min-height:calc(100vh - 68px)}aside{background:#fff;padding:22px;overflow:auto;max-height:calc(100vh - 68px);border-right:1px solid #e8eef5}h2{font-size:16px;margin:0 0 10px}p{line-height:1.5}.sub{font-size:13px;color:#66758d;margin:0 0 20px}.section{border-top:1px solid #edf0f4;padding:17px 0}.participant{display:flex;gap:7px;margin:10px 0;align-items:center}.num{font-size:12px;background:#e6edfc;border-radius:30px;color:#2457bb;padding:6px;flex:none}input,button{font:inherit}input[type=text]{min-width:0;flex:1;padding:10px 11px;border:1px solid #d8e0e9;border-radius:9px;font-size:13px}button{border:0;background:#245bd4;color:#fff;border-radius:9px;padding:10px 12px;cursor:pointer;font-size:13px}button.secondary{background:#f0f4fc;color:#1e4b9d}button.outline{background:white;color:#345;border:1px solid #d7dfeb}button:disabled{opacity:.6;cursor:wait}.partActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.partActions button{flex:1}.placeStatus{font-size:12px;color:#168054;min-height:16px;margin-left:31px}.controls{display:flex;gap:12px;align-items:center}.controls input{flex:1;accent-color:#245bd4}.stat{display:flex;justify-content:space-between;align-items:center;font-size:14px;background:#f1f5fd;padding:12px;border-radius:10px;margin:14px 0}.stat strong{color:#245bd4;font-size:21px}#results{display:flex;flex-direction:column;gap:8px}.result{background:#fff;border:1px solid #e1e7f0;padding:11px;border-radius:9px;cursor:pointer;text-align:left;color:#243047;width:100%}.result strong{font-size:13px}.result small{display:block;color:#64748b;margin-top:5px}.result:hover{border-color:#2f65dd}.state{font-size:12px;color:#6b7689;line-height:1.6;margin-top:10px;white-space:pre-wrap}.mapwrap{position:relative;min-height:500px}#map{height:calc(100vh - 68px);min-height:500px;width:100%}.legend{position:absolute;top:15px;right:15px;background:white;border:1px solid #e9edf3;padding:12px 15px;border-radius:10px;box-shadow:0 3px 15px #19325022;font-size:12px;line-height:2}.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px}.blue{background:#245bd4}.orange{background:#f18b37}.hint{font-size:12px;color:#788497;line-height:1.6}.warning{font-size:12px;color:#a24d11;background:#fff6e9;padding:9px;border-radius:8px}.label{display:inline-block;background:white;color:#234;padding:4px 7px;border-radius:8px;border:1px solid #ccd8eb;box-shadow:0 2px 7px #0002;white-space:nowrap;font-weight:600;font-size:12px}.info{width:205px;padding:10px;font-size:12px;line-height:1.6}.info b{font-size:14px}.info p{margin:6px 0 0;color:#58677a}@media(max-width:770px){header{height:58px;padding:0 14px}.layout{grid-template-columns:1fr}aside{max-height:none;overflow:visible}#map{height:55vh;min-height:350px}.mapwrap{grid-row:1}.legend{top:8px;right:8px}.layout{min-height:0}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>📍 지금 만나</h1>
-    <p>모두에게 공평한 만남 장소 찾기</p>
-  </header>
+<header><h1>📍 지금 만나</h1><span>우리 모두에게 공평한 만남 장소 찾기</span></header>
+<div class="layout">
+<aside>
+  <h2>출발 위치 설정</h2><p class="sub">참가자 위치를 입력하고 검색해 선택하세요. 선택한 위치를 기준으로 근처 후보 역만 지도에 표시됩니다.</p>
+  <div id="participants"></div>
+  <div class="partActions"><button class="secondary" id="add">+ 참가자 추가</button><button class="outline" id="mine">📍 내 현재 위치</button></div>
+  <section class="section">
+    <h2>후보 검색 범위</h2>
+    <div class="controls"><input id="buffer" type="range" min="0" max="15" step="0.5" value="3"><b id="bufferVal">3 km</b></div>
+    <p class="hint">3명 이상: 모든 출발지를 둘러싼 다각형 내부와 경계에서 설정 거리 이내<br>2명: 두 출발지를 잇는 선에서 설정 거리 이내<br>1명: 출발지에서 설정 거리 이내</p>
+    <button id="find" style="width:100%;font-weight:700;padding:13px">주변 만남 역 찾기</button>
+    <div class="state" id="status">카카오맵을 불러오는 중입니다…</div>
+  </section>
+  <section class="section">
+    <h2>추천 후보 역</h2>
+    <div class="stat"><span>현재 조건에 맞는 후보</span><strong id="count">0 / 101</strong></div>
+    <div id="results"><p class="sub">출발 위치를 선택한 뒤 검색해 주세요.</p></div>
+  </section>
+  <p class="warning">현재 버전은 지리적 위치로만 후보를 필터링합니다. 실제 지하철·버스 이동시간이나 공평성 점수는 아직 계산하지 않습니다.</p>
+</aside>
+<div class="mapwrap"><div id="map"></div><div class="legend"><div><span class="dot blue"></span>참가자 위치</div><div><span class="dot orange"></span>추천 후보 역</div><div style="font-size:11px;color:#748094">파란 선: 검색 기준 영역</div></div></div>
+</div>
+<script>
+// 중요: 카카오디벨로퍼스의 Default JS Key(웹 JavaScript 키)만 입력하세요.
+// REST API 키 / Admin 키를 이 파일에 넣지 마세요.
+const KAKAO_JS_KEY = '4e65c131766c8aee76696d7f9167c6cc';
+const DATA_FILE = './jigeum_manna_station_candidates_101.json';
 
-  <div id="map"></div>
+let map, placesService, polygonDrawing, lineDrawing, rangeDrawing;
+let userMarkers = [], stationMarkers = [], infowindows = [], allPlaces = [];
+let persons = [], nextPersonId = 1, coordsById = {};
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const setStatus = text => $('status').textContent = text;
 
-  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4e65c131766c8aee76696d7f9167c6cc"></script>
-  <script>
-    const container = document.getElementById("map");
-
-    const options = {
-      center: new kakao.maps.LatLng(37.5665, 126.9780),
-      level: 8
-    };
-
-    const map = new kakao.maps.Map(container, options);
-  </script>
+function loadKakao(){
+  if(KAKAO_JS_KEY==='YOUR_JS_KEY') {setStatus('index.html의 YOUR_JS_KEY를 카카오 JavaScript 키로 바꿔 주세요.');return;}
+  const script = document.createElement('script');
+  script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey='+encodeURIComponent(KAKAO_JS_KEY);
+  script.onload = () => {
+    if (!window.kakao?.maps) {setStatus('카카오맵 SDK를 초기화하지 못했습니다. 도메인과 키를 확인하세요.');return;}
+    kakao.maps.load(async()=>{
+      map = new kakao.maps.Map($('map'), {center:new kakao.maps.LatLng(37.5665,126.9780),level:10});
+      placesService = new kakao.maps.services.Places();
+      addPerson(); addPerson();
+      try{
+        const response=await fetch(DATA_FILE);
+        if(!response.ok) throw Error('HTTP '+response.status);
+        const dataset=await response.json();
+        allPlaces=dataset.places;
+        setStatus('101개 후보 목록을 불러왔어요. 참가자 출발 위치를 검색해서 선택하세요.');
+      }catch(e){setStatus('후보 JSON을 읽을 수 없습니다. JSON 파일을 index.html과 같은 위치에 올렸는지 확인하세요. ('+e.message+')');}
+      kakao.maps.event.addListener(map,'click',()=>infowindows.forEach(i=>i.close()));
+    });
+  };
+  script.onerror=()=>setStatus('카카오맵 SDK 요청이 실패했어요. JS 키와 SDK 도메인을 확인하세요.');
+  document.head.appendChild(script);
+}
+function addPerson(){
+  const person = {id:nextPersonId++, name:'',lat:null,lng:null};
+  persons.push(person);
+  renderPersons();
+}
+function renderPersons(){
+  $('participants').innerHTML='';
+  persons.forEach((person,i)=>{
+    const box=document.createElement('div');
+    const row=document.createElement('div'); row.className='participant';
+    const num=document.createElement('span');num.className='num';num.textContent='참가자 '+(i+1);
+    const input=document.createElement('input'); input.type='text';input.placeholder='예: 강남역, 김포시청, 주소';input.value=person.name;
+    input.addEventListener('input',()=>{person.name=input.value;person.lat=null;person.lng=null;setStatus('출발지를 바꿨다면 다시 검색·선택해 주세요.');});
+    input.addEventListener('keydown',e=>{if(e.key==='Enter') locatePerson(person,input);});
+    const search=document.createElement('button');search.textContent='검색';search.addEventListener('click',()=>locatePerson(person,input));
+    row.append(num,input,search);
+    if(persons.length>1){const remove=document.createElement('button');remove.className='outline';remove.textContent='×';remove.title='참가자 삭제';remove.addEventListener('click',()=>{persons=persons.filter(p=>p!==person);renderPersons();drawPersons();});row.append(remove);}
+    const status=document.createElement('div');status.className='placeStatus';status.id='person-'+person.id;
+    status.textContent=person.lat!==null?'✓ 위치 설정됨':'';
+    box.append(row,status);$('participants').appendChild(box);
+  });
+}
+function keyword(query){
+  return new Promise(resolve=>placesService.keywordSearch(query,(data,status)=>resolve(status===kakao.maps.services.Status.OK?data:[])));
+}
+async function locatePerson(person,input){
+  if(!input.value.trim()) {setStatus('출발지 검색어를 입력하세요.');return;}
+  setStatus('위치를 검색하는 중: '+input.value.trim());
+  const found=await keyword(input.value.trim());
+  if(!found.length){setStatus('검색 결과가 없습니다. 더 구체적인 역명 또는 주소로 검색하세요.');return;}
+  // 프로토타입: 첫 번째 검색 결과를 사용하되 검색 결과 명칭을 표시해 선택 결과를 확인합니다.
+  const candidate=found[0];
+  person.name=candidate.place_name;person.lat=Number(candidate.y);person.lng=Number(candidate.x);
+  input.value=person.name;
+  $('person-'+person.id).textContent='✓ '+candidate.place_name+' · '+(candidate.road_address_name||candidate.address_name);
+  drawPersons();setStatus('출발 위치를 설정했어요. 주변 만남 역 찾기를 눌러 주세요.');
+}
+function clearOverlays(items){items.forEach(item=>item.setMap(null));items.length=0;}
+function drawPersons(){
+  clearOverlays(userMarkers);
+  persons.filter(p=>p.lat!==null).forEach((p,i)=>{
+    const pos=new kakao.maps.LatLng(p.lat,p.lng);
+    const marker=new kakao.maps.Marker({position:pos,map});userMarkers.push(marker);
+    const label=new kakao.maps.CustomOverlay({position:pos,content:'<div class="label">👤 '+(i+1)+'번 출발지</div>',yAnchor:2,map});userMarkers.push(label);
+  });
+  const bounds=new kakao.maps.LatLngBounds();const ready=persons.filter(p=>p.lat!==null);
+  if(ready.length){ready.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));map.setBounds(bounds,70,70,70,70);if(ready.length===1)map.setLevel(7);}
+}
+// 국지적 거리 계산: 위도/경도를 킬로미터 단위의 평면 좌표로 변환
+function xy(p,refLat){const lat=p.lat*Math.PI/180;const lng=p.lng*Math.PI/180;return {x:6371*lng*Math.cos(refLat),y:6371*lat};}
+function cross(o,a,b){return (a.x-o.x)*(b.y-o.y)-(a.y-o.y)*(b.x-o.x);}
+function hull(points){
+  if(points.length<=2)return points;
+  const s=[...points].sort((a,b)=>a.x-b.x||a.y-b.y);let lo=[],up=[];
+  for(const p of s){while(lo.length>=2&&cross(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p);}
+  for(const p of [...s].reverse()){while(up.length>=2&&cross(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
+  lo.pop();up.pop();return lo.concat(up);
+}
+function segDist(p,a,b){
+  const dx=b.x-a.x,dy=b.y-a.y,s=dx*dx+dy*dy;
+  if(s===0)return Math.hypot(p.x-a.x,p.y-a.y);
+  const t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/s));
+  return Math.hypot(p.x-(a.x+t*dx),p.y-(a.y+t*dy));
+}
+function inside(p,poly){let ok=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){
+ const a=poly[i],b=poly[j];if((a.y>p.y)!==(b.y>p.y) && p.x<(b.x-a.x)*(p.y-a.y)/(b.y-a.y)+a.x)ok=!ok;
+}return ok;}
+function distanceToRegion(p,shape){
+  if(shape.length===1)return Math.hypot(p.x-shape[0].x,p.y-shape[0].y);
+  if(shape.length===2)return segDist(p,shape[0],shape[1]);
+  if(inside(p,shape))return 0;
+  return Math.min(...shape.map((a,i)=>segDist(p,a,shape[(i+1)%shape.length])));
+}
+function cacheKey(p){return 'jm_station_v2_'+p.id;}
+async function getStationCoords(p){
+  if(Number.isFinite(p.latitude)&&Number.isFinite(p.longitude))return {lat:p.latitude,lng:p.longitude};
+  try{const cached=JSON.parse(localStorage.getItem(cacheKey(p)));if(cached&&Number.isFinite(cached.lat)&&Number.isFinite(cached.lng))return cached;}catch(e){}
+  const variants=[p.search_query,p.name+' '+p.province,p.name];
+  for(const term of variants){
+    const found=await keyword(term);
+    // 같은 이름의 다른 지역 검색 결과를 최대한 피하기 위해 역 이름 일치 우선
+    const exact=found.find(x=>x.place_name.replace(/\s/g,'').includes(p.name.replace(/\s/g,'')));
+    if(exact){const position={lat:Number(exact.y),lng:Number(exact.x)};localStorage.setItem(cacheKey(p),JSON.stringify(position));return position;}
+    await sleep(90);
+  }
+  return null;
+}
+function clearSearchDrawings(){if(polygonDrawing)polygonDrawing.setMap(null);if(lineDrawing)lineDrawing.setMap(null);if(rangeDrawing)rangeDrawing.setMap(null);polygonDrawing=lineDrawing=rangeDrawing=null;}
+function drawRegion(geoShape,dist){
+  clearSearchDrawings();const path=geoShape.map(p=>new kakao.maps.LatLng(p.lat,p.lng));
+  if(geoShape.length>=3){polygonDrawing=new kakao.maps.Polygon({map,path,strokeWeight:3,strokeColor:'#2468dd',strokeOpacity:.9,fillColor:'#91b8fa',fillOpacity:.17});}
+  else if(geoShape.length===2){lineDrawing=new kakao.maps.Polyline({map,path,strokeWeight:4,strokeColor:'#2468dd',strokeOpacity:.8});}
+  else if(geoShape.length===1){rangeDrawing=new kakao.maps.Circle({map,center:path[0],radius:dist*1000,strokeWeight:2,strokeColor:'#2468dd',fillColor:'#91b8fa',fillOpacity:.15});}
+}
+function showStation(p){
+  const pos=new kakao.maps.LatLng(p.lat,p.lng);
+  map.panTo(pos);
+  infowindows.forEach(i=>i.close());
+  p.info.open(map,p.marker);
+}
+function addStation(p){
+  const position=new kakao.maps.LatLng(p.lat,p.lng);
+  const marker=new kakao.maps.Marker({map,position,image:new kakao.maps.MarkerImage('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',new kakao.maps.Size(35,40))});
+  const content=document.createElement('div');content.className='info';
+  const title=document.createElement('b');title.textContent=p.name;
+  const detail=document.createElement('p');detail.textContent=p.description+' · '+p.lines.join(' / ');
+  content.append(title,detail);
+  const info=new kakao.maps.InfoWindow({content});
+  kakao.maps.event.addListener(marker,'click',()=>{infowindows.forEach(i=>i.close());info.open(map,marker);});
+  stationMarkers.push(marker);infowindows.push(info);p.marker=marker;p.info=info;
+}
+let running=false;
+async function findCandidates(){
+  if(running)return;
+  const ready=persons.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng));
+  if(ready.length!==persons.length){setStatus('모든 참가자의 출발 위치를 검색해서 설정해 주세요.');return;}
+  if(!allPlaces.length){setStatus('후보 장소 JSON이 아직 로드되지 않았습니다.');return;}
+  running=true;$('find').disabled=true;
+  clearOverlays(stationMarkers);infowindows=[];
+  const refLat=ready.reduce((a,p)=>a+p.lat,0)/ready.length*Math.PI/180;
+  const shape=hull(ready.map(p=>xy(p,refLat)));
+  const geoShape=shape.map(p=>({lat:p.y/6371*180/Math.PI,lng:p.x/(6371*Math.cos(refLat))*180/Math.PI}));
+  const buffer=Number($('buffer').value);
+  drawRegion(geoShape,buffer);
+  let hits=[], failed=0;
+  for(let i=0;i<allPlaces.length;i++){
+    const station=allPlaces[i];
+    const point=await getStationCoords(station);
+    if(!point){failed++;}else{
+      const distance=distanceToRegion(xy(point,refLat),shape);
+      if(distance<=buffer+1e-8)hits.push({...station,...point,distance});
+    }
+    if(i%6===0||i===allPlaces.length-1){setStatus('101개 장소 위치 확인: '+(i+1)+'/101'+(failed?' · 위치 미확인 '+failed+'곳':''));}
+    await sleep(80);
+  }
+  hits.sort((a,b)=>a.distance-b.distance||a.name.localeCompare(b.name,'ko'));
+  hits.forEach(addStation);
+  $('count').textContent=hits.length+' / '+allPlaces.length;
+  $('results').innerHTML='';
+  if(!hits.length)$('results').innerHTML='<p class="sub">설정 범위에 해당하는 역이 없어요. 검색 범위를 넓혀 보세요.</p>';
+  hits.forEach(p=>{
+    const b=document.createElement('button');b.className='result';
+    const strong=document.createElement('strong');strong.textContent='🚉 '+p.name;
+    const small=document.createElement('small');small.textContent=p.description+' · '+p.lines.join(' / ');
+    b.append(strong,small);b.addEventListener('click',()=>showStation(p));$('results').appendChild(b);
+  });
+  const bounds=new kakao.maps.LatLngBounds();ready.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));
+  hits.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));
+  map.setBounds(bounds,55,55,55,55);if(ready.length===1&&!hits.length)map.setLevel(7);
+  setStatus('검색 완료: '+hits.length+'곳 표시'+(failed?' · 위치 확인 실패 '+failed+'곳 (표시 제외)':'')+'\n실제 대중교통 이동시간은 아직 반영되지 않았습니다.');
+  running=false;$('find').disabled=false;
+}
+$('add').addEventListener('click',addPerson);
+$('mine').addEventListener('click',()=>{
+  if(!navigator.geolocation){setStatus('이 브라우저는 위치 기능을 지원하지 않습니다.');return;}
+  setStatus('브라우저에서 위치 권한을 허용해 주세요.');
+  navigator.geolocation.getCurrentPosition(pos=>{
+    if(!persons.length)addPerson();const p=persons[0];p.lat=pos.coords.latitude;p.lng=pos.coords.longitude;p.name='현재 위치';renderPersons();drawPersons();setStatus('1번 참가자의 현재 위치를 설정했어요.');
+  },err=>setStatus('위치를 가져오지 못했어요: '+err.message),{enableHighAccuracy:true,timeout:12000});
+});
+$('buffer').addEventListener('input',()=>{$('bufferVal').textContent=$('buffer').value+' km';});
+$('find').addEventListener('click',findCandidates);
+loadKakao();
+</script>
 </body>
 </html>
