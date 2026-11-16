@@ -1,0 +1,1596 @@
+{
+  "dataset": "지금 만나 - 만남 장소 후보 역",
+  "version": "1.0",
+  "coordinate_system": "WGS84 (lat/lng; geocoding required)",
+  "note": "역별 노선/특징은 사용자가 제공한 초안을 기반으로 작성했으며 운영현황 및 정확한 좌표는 API 조회로 확인해야 합니다. 월미바다역은 월미바다열차 관광용 정거장입니다. 수원시청역은 행궁동과 다른 위치입니다.",
+  "count": 101,
+  "region_counts": {
+    "seoul_central": 18,
+    "seoul_northeast": 18,
+    "seoul_northwest": 13,
+    "seoul_southeast": 23,
+    "seoul_southwest": 11,
+    "gg_incheon": 18
+  },
+  "places": [
+    {
+      "id": "place_001",
+      "name": "종로3가역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "3",
+        "5"
+      ],
+      "description": "익선동 한옥거리·을지로 노포",
+      "station_type": "rail_station",
+      "search_query": "종로3가역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_002",
+      "name": "안국역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "3"
+      ],
+      "description": "북촌·삼청동 카페와 갤러리",
+      "station_type": "rail_station",
+      "search_query": "안국역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_003",
+      "name": "경복궁역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "3"
+      ],
+      "description": "서촌·통인시장·미술관",
+      "station_type": "rail_station",
+      "search_query": "경복궁역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_004",
+      "name": "광화문역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "5"
+      ],
+      "description": "서점·전시·도심 맛집",
+      "station_type": "rail_station",
+      "search_query": "광화문역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_005",
+      "name": "시청역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "2"
+      ],
+      "description": "덕수궁·정동길",
+      "station_type": "rail_station",
+      "search_query": "시청역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_006",
+      "name": "을지로3가역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "3"
+      ],
+      "description": "힙지로 카페·펍",
+      "station_type": "rail_station",
+      "search_query": "을지로3가역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_007",
+      "name": "을지로4가역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "5"
+      ],
+      "description": "세운상가·방산시장",
+      "station_type": "rail_station",
+      "search_query": "을지로4가역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_008",
+      "name": "을지로입구역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "명동·백화점·야경",
+      "station_type": "rail_station",
+      "search_query": "을지로입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_009",
+      "name": "명동역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "4"
+      ],
+      "description": "쇼핑·길거리 음식",
+      "station_type": "rail_station",
+      "search_query": "명동역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_010",
+      "name": "충무로역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "3",
+        "4"
+      ],
+      "description": "인쇄 골목·남산골 한옥마을",
+      "station_type": "rail_station",
+      "search_query": "충무로역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_011",
+      "name": "동대문역사문화공원역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "4",
+        "5"
+      ],
+      "description": "DDP·야간 쇼핑",
+      "station_type": "rail_station",
+      "search_query": "동대문역사문화공원역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_012",
+      "name": "혜화역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "4"
+      ],
+      "description": "대학로 공연·낙산공원",
+      "station_type": "rail_station",
+      "search_query": "혜화역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_013",
+      "name": "서울역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "4",
+        "공항철도",
+        "GTX-A"
+      ],
+      "description": "광역 교통·서울로7017·후암동",
+      "station_type": "rail_station",
+      "search_query": "서울역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_014",
+      "name": "숙대입구역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "4"
+      ],
+      "description": "남영동 열정도·맛집",
+      "station_type": "rail_station",
+      "search_query": "숙대입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_015",
+      "name": "삼각지역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "4",
+        "6"
+      ],
+      "description": "용리단길 맛집·카페",
+      "station_type": "rail_station",
+      "search_query": "삼각지역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_016",
+      "name": "신용산역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "4"
+      ],
+      "description": "용리단길·아모레퍼시픽",
+      "station_type": "rail_station",
+      "search_query": "신용산역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_017",
+      "name": "이태원역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "다국적 식당·펍",
+      "station_type": "rail_station",
+      "search_query": "이태원역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_018",
+      "name": "한강진역",
+      "region_id": "seoul_central",
+      "region_name": "서울 도심권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "한남동·리움미술관",
+      "station_type": "rail_station",
+      "search_query": "한강진역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_019",
+      "name": "성수역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "팝업스토어·카페·편집숍",
+      "station_type": "rail_station",
+      "search_query": "성수역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_020",
+      "name": "뚝섬역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "성수 연무장길·서울숲 인근",
+      "station_type": "rail_station",
+      "search_query": "뚝섬역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_021",
+      "name": "서울숲역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "수인분당"
+      ],
+      "description": "서울숲·아틀리에길",
+      "station_type": "rail_station",
+      "search_query": "서울숲역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_022",
+      "name": "건대입구역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "7"
+      ],
+      "description": "커먼그라운드·양꼬치 거리",
+      "station_type": "rail_station",
+      "search_query": "건대입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_023",
+      "name": "어린이대공원역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "7"
+      ],
+      "description": "세종대·어린이대공원",
+      "station_type": "rail_station",
+      "search_query": "어린이대공원역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_024",
+      "name": "구의역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "미가로 먹자골목",
+      "station_type": "rail_station",
+      "search_query": "구의역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_025",
+      "name": "군자역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "5",
+        "7"
+      ],
+      "description": "능동로 로컬 맛집",
+      "station_type": "rail_station",
+      "search_query": "군자역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_026",
+      "name": "왕십리역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "5",
+        "수인분당",
+        "경의중앙"
+      ],
+      "description": "복합쇼핑몰·한양대",
+      "station_type": "rail_station",
+      "search_query": "왕십리역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_027",
+      "name": "한양대역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "대학가 가성비 맛집",
+      "station_type": "rail_station",
+      "search_query": "한양대역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_028",
+      "name": "신당역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "6"
+      ],
+      "description": "떡볶이 타운·중앙시장",
+      "station_type": "rail_station",
+      "search_query": "신당역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_029",
+      "name": "동묘앞역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "6"
+      ],
+      "description": "구제시장·레트로",
+      "station_type": "rail_station",
+      "search_query": "동묘앞역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_030",
+      "name": "신설동역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "2",
+        "우이신설"
+      ],
+      "description": "서울풍물시장·성북천",
+      "station_type": "rail_station",
+      "search_query": "신설동역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_031",
+      "name": "안암역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "고려대 대학가",
+      "station_type": "rail_station",
+      "search_query": "안암역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_032",
+      "name": "성신여대입구역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "4",
+        "우이신설"
+      ],
+      "description": "돈암동 카페·쇼핑",
+      "station_type": "rail_station",
+      "search_query": "성신여대입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_033",
+      "name": "한성대입구역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "4"
+      ],
+      "description": "성북동·한양도성길",
+      "station_type": "rail_station",
+      "search_query": "한성대입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_034",
+      "name": "회기역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "경의중앙"
+      ],
+      "description": "경희대·외대·파전골목",
+      "station_type": "rail_station",
+      "search_query": "회기역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_035",
+      "name": "청량리역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "경의중앙",
+        "수인분당"
+      ],
+      "description": "전통시장·복합 상권",
+      "station_type": "rail_station",
+      "search_query": "청량리역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_036",
+      "name": "노원역",
+      "region_id": "seoul_northeast",
+      "region_name": "서울 동북권",
+      "province": "서울특별시",
+      "lines": [
+        "4",
+        "7"
+      ],
+      "description": "동북부 번화가",
+      "station_type": "rail_station",
+      "search_query": "노원역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_037",
+      "name": "홍대입구역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "공항철도",
+        "경의중앙"
+      ],
+      "description": "홍대·연남동",
+      "station_type": "rail_station",
+      "search_query": "홍대입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_038",
+      "name": "합정역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "6"
+      ],
+      "description": "메세나폴리스·인디 문화",
+      "station_type": "rail_station",
+      "search_query": "합정역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_039",
+      "name": "상수역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "개성 있는 펍·식당",
+      "station_type": "rail_station",
+      "search_query": "상수역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_040",
+      "name": "망원역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "망원시장·망리단길",
+      "station_type": "rail_station",
+      "search_query": "망원역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_041",
+      "name": "연신내역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "3",
+        "6",
+        "GTX-A"
+      ],
+      "description": "은평 로데오거리",
+      "station_type": "rail_station",
+      "search_query": "연신내역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_042",
+      "name": "불광역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "3",
+        "6"
+      ],
+      "description": "북한산·시장",
+      "station_type": "rail_station",
+      "search_query": "불광역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_043",
+      "name": "공덕역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "5",
+        "6",
+        "공항철도",
+        "경의중앙"
+      ],
+      "description": "족발골목·경의선숲길",
+      "station_type": "rail_station",
+      "search_query": "공덕역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_044",
+      "name": "마포역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "5"
+      ],
+      "description": "도심 식당·한강 전망",
+      "station_type": "rail_station",
+      "search_query": "마포역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_045",
+      "name": "대흥역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "경의선숲길·염리동 카페",
+      "station_type": "rail_station",
+      "search_query": "대흥역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_046",
+      "name": "신촌역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "연세대·서강대 대학가",
+      "station_type": "rail_station",
+      "search_query": "신촌역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_047",
+      "name": "이대역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "패션거리·카페",
+      "station_type": "rail_station",
+      "search_query": "이대역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_048",
+      "name": "디지털미디어시티역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "6",
+        "공항철도",
+        "경의중앙"
+      ],
+      "description": "상암 방송가·먹자골목",
+      "station_type": "rail_station",
+      "search_query": "디지털미디어시티역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_049",
+      "name": "월드컵경기장역",
+      "region_id": "seoul_northwest",
+      "region_name": "서울 서북권",
+      "province": "서울특별시",
+      "lines": [
+        "6"
+      ],
+      "description": "월드컵경기장·하늘공원",
+      "station_type": "rail_station",
+      "search_query": "월드컵경기장역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_050",
+      "name": "강남역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "신분당"
+      ],
+      "description": "쇼핑·맛집·비즈니스",
+      "station_type": "rail_station",
+      "search_query": "강남역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_051",
+      "name": "신논현역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "9",
+        "신분당"
+      ],
+      "description": "강남 상권·펍",
+      "station_type": "rail_station",
+      "search_query": "신논현역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_052",
+      "name": "논현역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "7",
+        "신분당"
+      ],
+      "description": "영동시장·먹자골목",
+      "station_type": "rail_station",
+      "search_query": "논현역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_053",
+      "name": "신사역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "3",
+        "신분당"
+      ],
+      "description": "가로수길·세로수길",
+      "station_type": "rail_station",
+      "search_query": "신사역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_054",
+      "name": "압구정역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "3"
+      ],
+      "description": "백화점·고급 상권",
+      "station_type": "rail_station",
+      "search_query": "압구정역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_055",
+      "name": "압구정로데오역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "수인분당"
+      ],
+      "description": "도산공원·패션·베이커리",
+      "station_type": "rail_station",
+      "search_query": "압구정로데오역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_056",
+      "name": "청담역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "7"
+      ],
+      "description": "갤러리·고급 미식",
+      "station_type": "rail_station",
+      "search_query": "청담역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_057",
+      "name": "삼성역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "코엑스·별마당 도서관",
+      "station_type": "rail_station",
+      "search_query": "삼성역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_058",
+      "name": "봉은사역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "9"
+      ],
+      "description": "코엑스·봉은사",
+      "station_type": "rail_station",
+      "search_query": "봉은사역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_059",
+      "name": "선릉역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "수인분당"
+      ],
+      "description": "테헤란로·선정릉",
+      "station_type": "rail_station",
+      "search_query": "선릉역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_060",
+      "name": "역삼역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "역삼동 직장인 상권",
+      "station_type": "rail_station",
+      "search_query": "역삼역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_061",
+      "name": "교대역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "3"
+      ],
+      "description": "법조타운 맛집",
+      "station_type": "rail_station",
+      "search_query": "교대역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_062",
+      "name": "고속터미널역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "3",
+        "7",
+        "9"
+      ],
+      "description": "파미에스테이션·백화점",
+      "station_type": "rail_station",
+      "search_query": "고속터미널역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_063",
+      "name": "사당역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "4"
+      ],
+      "description": "경기 남부 환승·먹자골목",
+      "station_type": "rail_station",
+      "search_query": "사당역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_064",
+      "name": "양재역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "3",
+        "신분당"
+      ],
+      "description": "양재천 카페거리",
+      "station_type": "rail_station",
+      "search_query": "양재역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_065",
+      "name": "잠실역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "8"
+      ],
+      "description": "롯데월드몰·석촌호수",
+      "station_type": "rail_station",
+      "search_query": "잠실역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_066",
+      "name": "송파나루역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "9"
+      ],
+      "description": "송리단길",
+      "station_type": "rail_station",
+      "search_query": "송파나루역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_067",
+      "name": "석촌역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "8",
+        "9"
+      ],
+      "description": "석촌호수·송리단길",
+      "station_type": "rail_station",
+      "search_query": "석촌역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_068",
+      "name": "잠실새내역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "신천 먹자골목",
+      "station_type": "rail_station",
+      "search_query": "잠실새내역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_069",
+      "name": "종합운동장역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "9"
+      ],
+      "description": "야구·공연",
+      "station_type": "rail_station",
+      "search_query": "종합운동장역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_070",
+      "name": "올림픽공원역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "5",
+        "9"
+      ],
+      "description": "올림픽공원·공연",
+      "station_type": "rail_station",
+      "search_query": "올림픽공원역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_071",
+      "name": "문정역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "8"
+      ],
+      "description": "법조단지·가든파이브",
+      "station_type": "rail_station",
+      "search_query": "문정역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_072",
+      "name": "천호역",
+      "region_id": "seoul_southeast",
+      "region_name": "서울 동남권",
+      "province": "서울특별시",
+      "lines": [
+        "5",
+        "8"
+      ],
+      "description": "강동 로데오거리·백화점",
+      "station_type": "rail_station",
+      "search_query": "천호역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_073",
+      "name": "여의도역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "5",
+        "9"
+      ],
+      "description": "더현대 서울·IFC몰",
+      "station_type": "rail_station",
+      "search_query": "여의도역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_074",
+      "name": "여의나루역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "5"
+      ],
+      "description": "여의도 한강공원",
+      "station_type": "rail_station",
+      "search_query": "여의나루역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_075",
+      "name": "영등포역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "1"
+      ],
+      "description": "타임스퀘어·백화점",
+      "station_type": "rail_station",
+      "search_query": "영등포역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_076",
+      "name": "문래역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "문래창작촌·공방·펍",
+      "station_type": "rail_station",
+      "search_query": "문래역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_077",
+      "name": "서울대입구역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "샤로수길",
+      "station_type": "rail_station",
+      "search_query": "서울대입구역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_078",
+      "name": "신림역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "2",
+        "신림선"
+      ],
+      "description": "순대타운·먹자골목",
+      "station_type": "rail_station",
+      "search_query": "신림역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_079",
+      "name": "노량진역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "9"
+      ],
+      "description": "수산시장·컵밥거리",
+      "station_type": "rail_station",
+      "search_query": "노량진역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_080",
+      "name": "이수역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "4",
+        "7"
+      ],
+      "description": "이수역 상권·맛집",
+      "station_type": "rail_station",
+      "search_query": "이수역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_081",
+      "name": "구로디지털단지역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "2"
+      ],
+      "description": "직장인 먹자골목",
+      "station_type": "rail_station",
+      "search_query": "구로디지털단지역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_082",
+      "name": "가산디지털단지역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "1",
+        "7"
+      ],
+      "description": "아울렛 쇼핑단지",
+      "station_type": "rail_station",
+      "search_query": "가산디지털단지역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_083",
+      "name": "마곡나루역",
+      "region_id": "seoul_southwest",
+      "region_name": "서울 서남권",
+      "province": "서울특별시",
+      "lines": [
+        "9",
+        "공항철도"
+      ],
+      "description": "서울식물원·LG아트센터",
+      "station_type": "rail_station",
+      "search_query": "마곡나루역 서울특별시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_084",
+      "name": "수원역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "1",
+        "수인분당"
+      ],
+      "description": "AK플라자·롯데몰·로데오거리",
+      "station_type": "rail_station",
+      "search_query": "수원역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_085",
+      "name": "수원시청역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "수인분당"
+      ],
+      "description": "인계동 중심 상권 (행궁동과는 별도 위치)",
+      "station_type": "rail_station",
+      "search_query": "수원시청역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_086",
+      "name": "판교역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "신분당",
+        "경강"
+      ],
+      "description": "현대백화점·테크노밸리",
+      "station_type": "rail_station",
+      "search_query": "판교역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_087",
+      "name": "정자역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "신분당",
+        "수인분당"
+      ],
+      "description": "정자동 카페거리",
+      "station_type": "rail_station",
+      "search_query": "정자역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_088",
+      "name": "서현역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "수인분당"
+      ],
+      "description": "AK플라자·로데오거리",
+      "station_type": "rail_station",
+      "search_query": "서현역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_089",
+      "name": "야탑역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "수인분당"
+      ],
+      "description": "성남터미널 인근·먹자골목",
+      "station_type": "rail_station",
+      "search_query": "야탑역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_090",
+      "name": "범계역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "4"
+      ],
+      "description": "평촌 로데오거리",
+      "station_type": "rail_station",
+      "search_query": "범계역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_091",
+      "name": "안양역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "1"
+      ],
+      "description": "안양일번가·중앙시장",
+      "station_type": "rail_station",
+      "search_query": "안양역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_092",
+      "name": "부천역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "1"
+      ],
+      "description": "마루광장·먹자골목",
+      "station_type": "rail_station",
+      "search_query": "부천역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_093",
+      "name": "부천시청역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "7"
+      ],
+      "description": "현대백화점 중동점·중앙공원",
+      "station_type": "rail_station",
+      "search_query": "부천시청역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_094",
+      "name": "정발산역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "3"
+      ],
+      "description": "일산호수공원·라페스타",
+      "station_type": "rail_station",
+      "search_query": "정발산역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_095",
+      "name": "대화역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "3"
+      ],
+      "description": "고양종합운동장·킨텍스 인근",
+      "station_type": "rail_station",
+      "search_query": "대화역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_096",
+      "name": "동탄역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "SRT",
+        "GTX-A"
+      ],
+      "description": "롯데백화점 동탄점·여울공원",
+      "station_type": "rail_station",
+      "search_query": "동탄역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_097",
+      "name": "광교중앙역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "경기도",
+      "lines": [
+        "신분당"
+      ],
+      "description": "갤러리아 광교·호수공원",
+      "station_type": "rail_station",
+      "search_query": "광교중앙역 경기도",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_098",
+      "name": "부평역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "인천광역시",
+      "lines": [
+        "1",
+        "인천1"
+      ],
+      "description": "부평 지하상가·평리단길",
+      "station_type": "rail_station",
+      "search_query": "부평역 인천광역시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_099",
+      "name": "예술회관역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "인천광역시",
+      "lines": [
+        "인천1"
+      ],
+      "description": "구월동 로데오거리",
+      "station_type": "rail_station",
+      "search_query": "예술회관역 인천광역시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_100",
+      "name": "인천역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "인천광역시",
+      "lines": [
+        "1",
+        "수인분당"
+      ],
+      "description": "차이나타운·개항장·동화마을",
+      "station_type": "rail_station",
+      "search_query": "인천역 인천광역시",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "place_101",
+      "name": "월미바다역",
+      "region_id": "gg_incheon",
+      "region_name": "경기·인천 수도권",
+      "province": "인천광역시",
+      "lines": [
+        "월미바다열차"
+      ],
+      "description": "월미도 관광·놀이시설·바다 전망",
+      "station_type": "tourist_monorail",
+      "search_query": "월미바다역 인천광역시",
+      "latitude": null,
+      "longitude": null
+    }
+  ]
+}
