@@ -5,9 +5,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>지금 만나</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header {
+      padding: 20px;
+      background: #ffffff;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    #map {
+      width: 100%;
+      height: 80vh;
+    }
+  </style>
 </head>
 <body>
-  <h1>📍 지금 만나</h1>
-  <p>우리 모두에게 공평한 만남 장소 찾기</p>
+  <header>
+    <h1>📍 지금 만나</h1>
+    <p>모두에게 공평한 만남 장소 찾기</p>
+  </header>
+
+  <div id="map"></div>
+
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_JS_KEY"></script>
+  <script>
+    const container = document.getElementById("map");
+
+    const options = {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 8
+    };
+
+    const map = new kakao.maps.Map(container, options);
+  </script>
 </body>
 </html>
