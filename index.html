@@ -25,12 +25,17 @@ aside.control-panel{order:1;max-height:calc(100vh - 76px);overflow:auto;min-widt
 .map-overlay-title{position:absolute;top:20px;left:20px;z-index:2;pointer-events:none;background:#fff;display:flex;gap:10px;align-items:center;padding:12px 16px;box-shadow:0 5px 20px #12294115;border:1px solid #e9edf3;border-radius:13px;max-width:calc(100% - 210px)}.map-overlay-title b{display:block;font-size:13px;color:#29394a}.map-overlay-title small{display:block;font-size:11px;color:#8897a7;margin-top:3px}.map-overlay-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:#ecf3ff;color:#1765e9;font-size:22px;font-weight:750}.legend{top:20px;right:20px;border-radius:12px;box-shadow:0 5px 20px #12294115;padding:10px 14px}.blue{background:#1765e9}.orange{background:#fb8b39}.label{border:1px solid #dbe7f8;border-radius:8px;box-shadow:0 3px 10px #1b355329}
 @media(max-width:1080px){.layout{grid-template-columns:minmax(0,6fr) minmax(330px,4fr)}aside.control-panel{padding:0 16px 22px}.map-overlay-title{max-width:calc(100% - 35px);top:12px;left:12px}.map-overlay-title small{display:none}.legend{top:auto;right:12px;bottom:20px}}
 @media(max-width:760px){.topbar{height:68px;padding:0 15px}.brand-symbol{width:37px;height:37px;font-size:27px}.brand-copy h1{font-size:20px}.brand-copy small{font-size:10px}.topbar-right{font-size:10px}.topbar-right>span:nth-child(2){display:none}.layout{display:flex;flex-direction:column;min-height:0}.mapwrap{order:0;height:45vh;min-height:310px;flex-shrink:0}#map{height:100%;min-height:310px}aside.control-panel{order:1;max-height:none;overflow:visible;border-left:0;border-top:1px solid #e5ebf3;padding:0 17px 22px}.panel-hero{padding-top:22px}.map-overlay-title{top:11px;left:11px;padding:9px 11px}.map-overlay-title b{font-size:11px}.legend{top:auto;bottom:12px;right:10px;padding:7px 10px;font-size:10px}.legend div:last-child{display:none}#results{max-height:280px}}
+
+[hidden]{display:none!important}.header-btn{padding:9px 12px;white-space:nowrap}.header-btn.subtle{background:#edf2fa;color:#25446f}.whoami{max-width:135px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.action-wide{width:100%;padding:13px;margin:8px 0 12px;background:#1664e8;font-size:13px}.ranked-station{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;background:#f7faff;border:1px solid #dce9fc;color:#1f3251;margin:8px 0;padding:13px;border-radius:12px}.ranked-station strong{font-size:13px}.ranked-station small{color:#62748f;font-weight:500;font-size:11px}.ranked-station:first-of-type{border-color:#91b9fa;background:#eef5ff}
+.modal-cover,.rooms-cover{position:fixed;inset:0;z-index:100;background:#101e3490;display:flex;align-items:center;justify-content:center;padding:18px}.modal-card{position:relative;width:min(100%,440px);background:#fff;border-radius:20px;padding:28px;box-shadow:0 25px 75px #06183244}.modal-card h2{font-size:24px;margin:0 0 18px}.modal-close{position:absolute;top:16px;right:16px;background:#f0f4fa;color:#31415a;padding:4px 10px;font-size:22px}.tabs{display:grid;grid-template-columns:1fr 1fr;background:#f0f4fa;border-radius:12px;padding:4px;gap:4px;margin-bottom:19px}.tabs button{background:transparent;color:#6d7d95}.tabs button.selected{background:#fff;color:#1462dd;box-shadow:0 2px 10px #1b35521a}.modal-card label{display:block;font-size:12px;font-weight:700;color:#42536b;margin:12px 0}.modal-card label input{display:block;width:100%;margin-top:6px;padding:12px;font-size:14px}.own-id{font-weight:700!important;color:#195bc5!important;background:#eff5ff;padding:10px;border-radius:10px}.feedback{font-size:12px;line-height:1.5;color:#275ab3;white-space:pre-wrap}.rooms-cover{background:#f3f6fb;display:block;overflow:auto;padding:25px}.rooms-inner{max-width:1120px;margin:0 auto}.rooms-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;background:#fff;border-radius:20px;padding:25px;margin-bottom:18px}.rooms-head h2{font-size:28px;margin:0 0 7px}.rooms-head p{color:#73829a;margin:0;font-size:13px}.rooms-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.room-card{background:#fff;padding:25px;border-radius:18px;min-width:0;box-shadow:0 3px 15px #12294a0a}.room-card.full{grid-column:1/-1}.room-card h3{font-size:18px;margin:0 0 12px}.room-card h4{margin:20px 0 10px}.room-card>p{color:#74839b;font-size:13px}.inline-form{display:flex;gap:8px}.inline-form input{min-width:0;flex:1}.inline-form button{white-space:nowrap}.room-section-head{margin-top:28px!important}.room-entry{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid #e5ebf4;padding:13px;border-radius:12px;margin:10px 0}.room-entry strong{min-width:150px}.room-entry input{min-width:220px;flex:1}.friend-line{background:#f5f8ff;padding:10px;border-radius:9px;margin:5px 0;display:flex;justify-content:space-between;align-items:center}
+@media(max-width:760px){.topbar-right{gap:4px}.header-btn{font-size:10px;padding:7px}.topbar-pill,.live-dot{display:none}.whoami{display:none!important}.rooms-grid{grid-template-columns:1fr}.room-card.full{grid-column:1}.rooms-head{flex-wrap:wrap}.rooms-cover{padding:12px}.room-entry input{min-width:100%}}
 </style>
 </head>
 <body>
 <header class="topbar">
   <div class="brand"><div class="brand-symbol">⌖</div><div class="brand-copy"><h1>지금 만나<span class="brand-period">.</span></h1><small>모두에게 가까운 곳에서, 더 쉽게 만나요</small></div></div>
-  <div class="topbar-right"><span class="live-dot"></span><span>수도권 핫플레이스 101곳</span><span class="topbar-pill">BETA</span></div>
+  <div class="topbar-right"><span class="live-dot"></span><span>수도권 핫플레이스 101곳</span><span class="topbar-pill">BETA</span><button id="openAuth" class="header-btn">로그인 / 회원가입</button><button id="openRooms" class="header-btn" hidden>모임 페이지</button><button id="logoutBtn" class="header-btn subtle" hidden>로그아웃</button><span id="whoami" class="whoami" hidden></span></div>
 </header>
 <div class="layout">
 <aside class="control-panel">
@@ -52,8 +57,15 @@ aside.control-panel{order:1;max-height:calc(100vh - 76px);overflow:auto;min-widt
     <div class="stat"><span>현재 조건에 맞는 후보</span><strong id="count">0 / 101</strong></div>
     <div id="results"><p class="sub">출발 위치를 선택한 뒤 검색해 주세요.</p></div>
   </section>
+  <section class="section recommendation-section">
+    <div class="panel-section-title"><span class="step-icon">04</span><h2>공평한 만남 장소 TOP 5</h2></div>
+    <p class="tripHelp">찾은 역 중 중심에 가까운 최대 10곳을 실제 대중교통 이동시간으로 비교해요. 가장 오래 걸리는 참가자의 시간을 최소화합니다.</p>
+    <button id="recommend" class="action-wide">✨ 지금 만나기 좋은 곳 추천</button>
+    <div class="hint">후보 10곳 × 참가자 수만큼 API가 호출돼요. 무료 호출량에 주의하세요.</div>
+    <div id="recommended" class="recommend-results"><p class="sub">출발지를 설정하고 후보 역을 찾은 다음 추천해 보세요.</p></div>
+  </section>
   <section class="section transit-section" id="transitPanel">
-    <div class="panel-section-title"><span class="step-icon">04</span><h2>대중교통 예상 이동시간</h2></div>
+    <div class="panel-section-title"><span class="step-icon">05</span><h2>대중교통 예상 이동시간</h2></div>
     <p class="tripHelp">후보 역 이름 또는 지도 마커를 누르면 참가자별 예상 이동시간을 조회합니다.</p>
     <div id="transitResults" aria-live="polite"><p class="sub">아직 선택한 역이 없어요.</p></div>
   </section>
@@ -61,10 +73,35 @@ aside.control-panel{order:1;max-height:calc(100vh - 76px);overflow:auto;min-widt
 </aside>
 <div class="mapwrap"><div id="map"></div><div class="map-overlay-title"><span class="map-overlay-icon">⌁</span><div><b>우리의 중간지점을 찾아봐요</b><small>출발지를 지정한 뒤 후보를 탐색하세요</small></div></div><div class="legend"><div><span class="dot blue"></span>참가자 위치</div><div><span class="dot orange"></span>추천 후보 역</div><div style="font-size:11px;color:#748094">파란 선: 검색 기준 영역</div></div></div>
 </div>
+<section id="authModal" class="modal-cover" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="modal-card">
+    <button class="modal-close" id="closeAuth" aria-label="닫기">×</button><h2 id="authTitle">로그인</h2>
+    <div class="tabs"><button id="tabLogin" class="selected" type="button">로그인</button><button id="tabSignup" type="button">회원가입</button></div>
+    <form id="authForm">
+      <label id="signupNameWrap" hidden>닉네임<input id="authName" type="text" maxlength="50" autocomplete="nickname" placeholder="예: 영림"></label>
+      <label id="signupUsernameWrap" hidden>친구 검색용 아이디 (영문 소문자·숫자·_ 3~24자)<input id="authUsername" type="text" minlength="3" maxlength="24" autocomplete="username" placeholder="예: yr123"></label>
+      <label>이메일<input id="authEmail" type="email" required autocomplete="email" placeholder="name@example.com"></label>
+      <label>비밀번호<input id="authPassword" type="password" minlength="6" required autocomplete="current-password" placeholder="6자 이상"></label>
+      <button class="action-wide" id="authSubmit" type="submit">로그인</button>
+      <p id="authMessage" class="feedback" role="status"></p>
+    </form>
+  </div>
+</section>
+<section id="roomsPage" class="rooms-cover" hidden aria-label="모임 페이지">
+  <div class="rooms-inner"><div class="rooms-head"><div><span class="eyebrow">MY MEETINGS</span><h2>우리의 모임</h2><p>친구를 추가하고 초대 링크로 함께 만날 곳을 정해요.</p></div><button id="closeRooms" class="outline">← 지도 돌아가기</button></div>
+  <div class="rooms-grid">
+    <div class="room-card"><h3>👥 친구 추가</h3><p id="myFriendId" class="own-id">내 친구 아이디: 확인 중...</p><p>상대방의 친구 아이디로 요청을 보내요.</p><form id="friendForm" class="inline-form"><input id="friendUsername" type="text" placeholder="친구 아이디" required><button>친구 요청</button></form><p id="friendFeedback" class="feedback"></p><h4>받은 친구 요청</h4><div id="incomingFriends"></div><h4>내 친구</h4><div id="friendsList"></div></div>
+    <div class="room-card"><h3>➕ 모임 만들기</h3><form id="createRoomForm" class="inline-form"><input id="newRoomName" type="text" placeholder="예: 금요일 저녁 모임" maxlength="80" required><button>모임 생성</button></form><p id="roomFeedback" class="feedback"></p><h3 class="room-section-head">🔗 모임에 들어가기</h3><form id="joinRoomForm" class="inline-form"><input id="inviteInput" type="text" placeholder="초대 코드 또는 링크" required><button>참여</button></form></div>
+    <div class="room-card full"><h3>📅 내 모임 · 초대 링크</h3><div id="roomList"><p class="sub">로그인 후 모임을 확인할 수 있어요.</p></div></div>
+  </div></div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 // 중요: 카카오디벨로퍼스의 Default JS Key(웹 JavaScript 키)만 입력하세요.
 // REST API 키 / Admin 키를 이 파일에 넣지 마세요.
 const KAKAO_JS_KEY = '4e65c131766c8aee76696d7f9167c6cc';
+const SUPABASE_URL = 'https://qnzfgahatcxbeybprsjb.supabase.co/rest/v1/';
+const SUPABASE_ANON_KEY = 'sb_publishable_pldYk_OXzp57W62XFTiZqw_L9ulKoyk';
 const DATA_FILE = './jigeum_manna_station_candidates_101.json';
 // Cloudflare Worker 배포 주소를 아래 문자열에 입력하세요. REST API 키를 넣는 곳이 아닙니다.
 // 예: 'https://jigeum-manna-transit.my-id.workers.dev'
@@ -75,6 +112,7 @@ let userMarkers = [], stationMarkers = [], infowindows = [], allPlaces = [];
 let persons = [], nextPersonId = 1, coordsById = {};
 let manualLocationMode = false, accuracyCircle = null;
 let selectedStation = null, transitRequestVersion = 0;
+let candidateHits = []; let recommendVersion = 0;
 const stationCoords = new Map();
 const stationRequests = new Map();
 const GEOCODE_CONCURRENCY = 5; // 카카오 장소 검색 과도한 동시 호출 방지
@@ -124,7 +162,7 @@ function renderPersons(){
     const row=document.createElement('div'); row.className='participant';
     const num=document.createElement('span');num.className='num';num.textContent='참가자 '+(i+1);
     const input=document.createElement('input'); input.type='text';input.placeholder='예: 강남역, 김포시청, 주소';input.value=person.name;
-    input.addEventListener('input',()=>{person.name=input.value;person.lat=null;person.lng=null;setStatus('출발지를 바꿨다면 다시 검색·선택해 주세요.');});
+    input.addEventListener('input',()=>{candidateHits=[];recommendVersion++;person.name=input.value;person.lat=null;person.lng=null;setStatus('출발지를 바꿨다면 다시 검색·선택해 주세요.');});
     input.addEventListener('keydown',e=>{if(e.key==='Enter') locatePerson(person,input);});
     const search=document.createElement('button');search.textContent='검색';search.addEventListener('click',()=>locatePerson(person,input));
     row.append(num,input,search);
@@ -151,7 +189,7 @@ async function locatePerson(person,input){
 }
 function clearOverlays(items){items.forEach(item=>item.setMap(null));items.length=0;}
 function drawPersons(){
-  transitRequestVersion++;
+  recommendVersion++;candidateHits=[];transitRequestVersion++;
   if(selectedStation)$('transitResults').textContent='출발지가 변경되었어요. 역을 다시 클릭해 주세요.';
   clearOverlays(userMarkers);
   persons.filter(p=>p.lat!==null).forEach((p,i)=>{
@@ -384,6 +422,7 @@ async function findCandidates(){
       if(distance<=buffer+1e-8)hits.push({...allPlaces[i],...point,distance});
     }
     hits.sort((a,b)=>a.distance-b.distance||a.name.localeCompare(b.name,'ko'));
+    candidateHits=hits; recommendVersion++; $('recommended').innerHTML='<p class="sub">✨ 추천 버튼을 눌러 실제 대중교통 시간 기준 TOP 5를 확인하세요.</p>';
     transitRequestVersion++; selectedStation=null; $('transitResults').innerHTML='<p class="sub">후보 역을 선택하면 참가자별 이동시간이 표시됩니다.</p>';
     clearOverlays(stationMarkers);
     infowindows.forEach(info=>info.close());infowindows=[];
@@ -437,7 +476,185 @@ $('mine').addEventListener('click',()=>{
 });
 $('buffer').addEventListener('input',()=>{$('bufferVal').textContent=$('buffer').value+' km';});
 $('find').addEventListener('click',findCandidates);
-loadKakao();
+$('recommend').addEventListener('click',recommendMeetingStations);
+// ── 실제 대중교통 이동시간 기준 추천 ──────────────────────────────────
+async function recommendMeetingStations(){
+  const ready=persons.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng));
+  const root=$('recommended');root.replaceChildren();
+  if(ready.length!==persons.length||!ready.length){root.textContent='먼저 참가자들의 출발 위치를 설정해 주세요.';return;}
+  if(!candidateHits.length){root.textContent='먼저 주변 만남 역 찾기를 눌러 주세요.';return;}
+  if(!validProxyUrl()){root.textContent='Worker 주소 설정을 확인해 주세요.';return;}
+  if(ready.length>8){root.textContent='한 번에 최대 8명의 이동시간을 비교할 수 있어요.';return;}
+  const version=++recommendVersion;
+  // 후보를 지리적으로 1차 압축한 후 실제 대중교통 시간으로 공평성 평가
+  const center={lat:ready.reduce((a,p)=>a+p.lat,0)/ready.length,lng:ready.reduce((a,p)=>a+p.lng,0)/ready.length};
+  const shortlist=[...candidateHits].sort((a,b)=>haversine(a,center)-haversine(b,center)).slice(0,10);
+  const status=h('p','tripSummary','예상 API 호출 '+(shortlist.length*ready.length)+'회 · 이동시간 조회 중…');root.append(status);
+  const jobs=[];shortlist.forEach((station,i)=>ready.forEach((person,j)=>jobs.push({i,j,station,person})));
+  const matrix=shortlist.map(()=>Array(ready.length).fill(null));let cursor=0,done=0;
+  async function worker(){
+    while(cursor<jobs.length){
+      if(version!==recommendVersion)return;
+      const {i,j,station,person}=jobs[cursor++];
+      try{const result=await requestTransit(person,station);
+        if(result.status==='OK'&&Number.isFinite(result.totalTime))matrix[i][j]=Math.ceil(result.totalTime/60);
+      }catch(e){/* 실패한 경로를 임의의 시간으로 대체하지 않음 */}
+      done++;if(version===recommendVersion)status.textContent='실제 대중교통 이동시간 조회 '+done+' / '+jobs.length+'회';
+    }
+  }
+  await Promise.all(Array.from({length:Math.min(3,jobs.length)},()=>worker()));
+  if(version!==recommendVersion)return;
+  const ranked=shortlist.map((station,i)=>({station,times:matrix[i]}))
+    .filter(x=>x.times.every(Number.isFinite))
+    .map(x=>({...x,max:Math.max(...x.times),avg:x.times.reduce((a,b)=>a+b,0)/x.times.length,spread:Math.max(...x.times)-Math.min(...x.times)}))
+    .sort((a,b)=>a.max-b.max||a.avg-b.avg||a.spread-b.spread).slice(0,5);
+  root.replaceChildren();
+  if(!ranked.length){root.textContent='모든 참가자의 경로 조회에 성공한 후보가 없어요. 출발지를 확인하거나 다시 시도해 주세요.';return;}
+  root.appendChild(h('p','tripHelp','모든 참가자의 경로가 조회된 역만 추천해요. 성공 '+ranked.length+'곳 (TOP 5 기준).'));
+  ranked.forEach((r,i)=>{
+    const btn=h('button','ranked-station');
+    const title=h('strong','', (i===0?'🏆 ':'')+(i+1)+'위 · '+r.station.name);
+    const sub=h('small','', '최대 '+r.max+'분 · 평균 '+Math.round(r.avg)+'분 · 편차 '+r.spread+'분');
+    const detail=h('small','',r.times.map((t,j)=>(j+1)+'번 '+t+'분').join(' / '));
+    btn.append(title,sub,detail);btn.addEventListener('click',()=>showStation(r.station));root.appendChild(btn);
+  });
+}
+function haversine(a,b){const rad=Math.PI/180,dlat=(a.lat-b.lat)*rad,dlng=(a.lng-b.lng)*rad;
+ const q=Math.sin(dlat/2)**2+Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin(dlng/2)**2;
+ return 6371*2*Math.atan2(Math.sqrt(q),Math.sqrt(1-q));}
+
+// ── Supabase Auth + 모임/친구 기능 ──────────────────────────────────────
+let db=null,sessionUser=null,signingUp=false;
+const supaReady=()=>!SUPABASE_URL.includes('YOUR_')&&!SUPABASE_ANON_KEY.includes('YOUR_')&&!!window.supabase?.createClient;
+const message=(id,s)=>{$(id).textContent=s;};
+function ensureDb(){if(!supaReady())return false;if(!db)db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);return true;}
+function showAuth(mode='login'){
+ signingUp=(mode==='signup');$('authTitle').textContent=signingUp?'회원가입':'로그인';
+ $('signupNameWrap').hidden=!signingUp;$('signupUsernameWrap').hidden=!signingUp;
+ $('authName').required=signingUp;$('authUsername').required=signingUp;
+ $('authPassword').autocomplete=signingUp?'new-password':'current-password';
+ $('tabLogin').classList.toggle('selected',!signingUp);$('tabSignup').classList.toggle('selected',signingUp);
+ $('authSubmit').textContent=signingUp?'회원가입':'로그인';message('authMessage','');$('authModal').hidden=false;
+}
+function closeAuth(){$('authModal').hidden=true;}
+$('openAuth').addEventListener('click',()=>showAuth());$('closeAuth').addEventListener('click',closeAuth);
+$('tabLogin').addEventListener('click',()=>showAuth('login'));
+$('tabSignup').addEventListener('click',()=>showAuth('signup'));
+$('authModal').addEventListener('click',e=>{if(e.target===$('authModal'))closeAuth();});
+$('authForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ if(!ensureDb()){message('authMessage','Supabase URL 및 Publishable 키를 index.html에 먼저 설정해 주세요.');return;}
+ const email=$('authEmail').value.trim(),password=$('authPassword').value;
+ $('authSubmit').disabled=true;
+ try{
+   if(signingUp){
+     const username=$('authUsername').value.trim().toLowerCase();
+     if(!/^[a-z0-9_]{3,24}$/.test(username))throw new Error('친구 아이디는 영문 소문자·숫자·_로 3~24자여야 합니다.');
+     const display_name=$('authName').value.trim();
+     const {data,error}=await db.auth.signUp({email,password,options:{data:{display_name,desired_username:username},emailRedirectTo:location.origin+location.pathname}});
+     if(error)throw error;
+     if(data.session){await syncProfile();closeAuth();}
+     else message('authMessage','가입 요청 완료! 이메일 인증이 켜져 있다면 메일의 인증 링크를 누른 뒤 로그인해 주세요.');
+   }else{
+     const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error;
+     closeAuth();
+   }
+ }catch(err){message('authMessage',err.message||'인증에 실패했습니다.');}
+ finally{$('authSubmit').disabled=false;}
+});
+async function syncProfile(){
+ if(!sessionUser||!db)return;
+ const {data:userResult}=await db.auth.getUser();const desired=userResult?.user?.user_metadata?.desired_username;
+ if(!desired||!/^[a-z0-9_]{3,24}$/.test(desired))return;
+ const {data:profile}=await db.from('profiles').select('username').eq('id',sessionUser.id).maybeSingle();
+ if(profile?.username?.startsWith('user_')){
+   const {error}=await db.from('profiles').update({username:desired}).eq('id',sessionUser.id);
+   if(error)console.warn('친구 아이디 설정 실패(중복 가능):',error.message);
+ }
+}
+async function updateSession(){
+ if(!db)return;const {data}=await db.auth.getUser();sessionUser=data.user||null;
+ $('openAuth').hidden=!!sessionUser;$('openRooms').hidden=!sessionUser;$('logoutBtn').hidden=!sessionUser;
+ $('whoami').hidden=!sessionUser;$('whoami').textContent=sessionUser?sessionUser.email:'';
+ if(sessionUser)await syncProfile();else $('roomsPage').hidden=true;
+}
+$('logoutBtn').addEventListener('click',async()=>{if(db)await db.auth.signOut();});
+$('openRooms').addEventListener('click',async()=>{$('roomsPage').hidden=false;await refreshRooms();});
+$('closeRooms').addEventListener('click',()=>{$('roomsPage').hidden=true;});
+async function refreshRooms(){
+ if(!sessionUser||!db)return;
+ // 모임 목록
+ const {data:me}=await db.from('profiles').select('username').eq('id',sessionUser.id).maybeSingle();
+ $('myFriendId').textContent='내 친구 아이디: @'+(me?.username||'프로필 조회 실패');
+ const {data:members,error:memberError}=await db.from('room_members').select('room_id,rooms(id,title,invite_code,created_at)').eq('user_id',sessionUser.id);
+ const list=$('roomList');list.replaceChildren();
+ if(memberError)list.textContent='모임 조회 실패: '+memberError.message;
+ else if(!members?.length)list.textContent='아직 모임이 없어요. 새 모임을 만들어 보세요.';
+ else members.forEach(m=>{
+   const r=m.rooms;if(!r)return;const box=h('div','room-entry');box.append(h('strong','',r.title));
+   const url=location.origin+location.pathname+'?invite='+encodeURIComponent(r.invite_code);
+   const field=document.createElement('input');field.type='text';field.readOnly=true;field.value=url;
+   const copy=h('button','secondary','초대 링크 복사');copy.addEventListener('click',()=>navigator.clipboard.writeText(url).then(()=>message('roomFeedback','초대 링크를 복사했어요.')).catch(()=>message('roomFeedback','복사가 안 되면 링크를 직접 선택해 주세요.')));
+   box.append(field,copy);list.append(box);
+ });
+ // 친구 목록과 받은 요청
+ const {data:requests,error:reqError}=await db.from('friend_requests').select('id,sender_id,receiver_id,status').or('sender_id.eq.'+sessionUser.id+',receiver_id.eq.'+sessionUser.id);
+ const incoming=$('incomingFriends'),friends=$('friendsList');incoming.replaceChildren();friends.replaceChildren();
+ if(reqError){incoming.textContent='친구 목록 조회 실패: '+reqError.message;return;}
+ const profileIds=[...new Set((requests||[]).flatMap(r=>[r.sender_id,r.receiver_id]))];
+ const {data:profiles}=profileIds.length?await db.from('profiles').select('id,username,display_name').in('id',profileIds):{data:[]};
+ const names=new Map((profiles||[]).map(p=>[p.id,p.display_name+' (@'+p.username+')']));
+ (requests||[]).forEach(r=>{
+   const other=r.sender_id===sessionUser.id?r.receiver_id:r.sender_id;
+   if(r.status==='accepted')friends.appendChild(h('p','friend-line',names.get(other)||'친구'));
+   else if(r.status==='pending'&&r.receiver_id===sessionUser.id){
+     const line=h('div','friend-line',names.get(other)||'사용자');const accept=h('button','secondary','수락');
+     accept.addEventListener('click',async()=>{const {error}=await db.from('friend_requests').update({status:'accepted'}).eq('id',r.id);if(error)message('friendFeedback',error.message);else await refreshRooms();});
+     line.append(accept);incoming.append(line);
+   }
+ });
+ if(!incoming.childElementCount)incoming.textContent='받은 요청이 없어요.';
+ if(!friends.childElementCount)friends.textContent='추가된 친구가 없어요.';
+}
+$('friendForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!sessionUser)return;
+ const username=$('friendUsername').value.trim().toLowerCase();
+ const {data:target,error:lookupError}=await db.from('profiles').select('id').eq('username',username).maybeSingle();
+ if(lookupError||!target){message('friendFeedback','해당 아이디를 찾을 수 없어요.');return;}
+ if(target.id===sessionUser.id){message('friendFeedback','본인에게 친구 요청을 보낼 수 없어요.');return;}
+ // 이미 받은 요청이 있다면 수락하도록 안내
+ const {data:existing}=await db.from('friend_requests').select('id,status').eq('sender_id',target.id).eq('receiver_id',sessionUser.id).maybeSingle();
+ if(existing){message('friendFeedback','상대방이 먼저 요청했어요. 받은 친구 요청에서 수락해 주세요.');return;}
+ const {error}=await db.from('friend_requests').insert({sender_id:sessionUser.id,receiver_id:target.id});
+ message('friendFeedback',error?'친구 요청 실패(이미 요청했을 수 있어요): '+error.message:'친구 요청을 보냈어요.');
+ if(!error){$('friendUsername').value='';await refreshRooms();}
+});
+$('createRoomForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!sessionUser)return;
+ const {error}=await db.rpc('create_jm_room',{p_title:$('newRoomName').value.trim()});
+ message('roomFeedback',error?'모임 생성 실패: '+error.message:'모임을 만들었어요! 초대 링크를 공유해 보세요.');
+ if(!error){$('newRoomName').value='';await refreshRooms();}
+});
+async function joinRoom(value){
+ const raw=value.trim(),code=(raw.match(/[?&]invite=([^&#]+)/)||[])[1];
+ const inviteCode=decodeURIComponent(code||raw);
+ if(!/^[a-f0-9]{32}$/i.test(inviteCode)){message('roomFeedback','올바른 초대 코드 또는 링크를 입력해 주세요.');return;}
+ const {error}=await db.rpc('join_jm_room',{p_code:inviteCode});
+ message('roomFeedback',error?'참여 실패: '+error.message:'모임에 참여했어요!');
+ if(!error){$('joinRoomForm').reset();await refreshRooms();}
+}
+$('joinRoomForm').addEventListener('submit',async e=>{e.preventDefault();if(sessionUser)await joinRoom($('inviteInput').value);});
+async function setupSupabase(){
+ if(!ensureDb())return;
+ db.auth.onAuthStateChange(()=>{setTimeout(()=>updateSession().then(async()=>{
+   if(sessionUser&&new URLSearchParams(location.search).get('invite')){
+     $('roomsPage').hidden=false;$('inviteInput').value=new URLSearchParams(location.search).get('invite');
+     message('roomFeedback','초대 링크를 확인했어요. 참여 버튼을 눌러 모임에 들어가세요.');
+   }
+ }),0);});
+ await updateSession();
+}
+setupSupabase();loadKakao();
 </script>
 </body>
 </html>
