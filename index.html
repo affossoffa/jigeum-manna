@@ -6,36 +6,60 @@
 <title>지금 만나 | 공평한 만남 장소 찾기</title>
 <style>
 :root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#17243a;background:#f4f7fb}*{box-sizing:border-box}body{margin:0}header{height:68px;background:white;border-bottom:1px solid #e8eef5;display:flex;align-items:center;justify-content:space-between;padding:0 24px}header h1{font-size:23px;margin:0;color:#215cd3}header span{font-size:12px;color:#64748b}.layout{display:grid;grid-template-columns:minmax(320px,380px) 1fr;min-height:calc(100vh - 68px)}aside{background:#fff;padding:22px;overflow:auto;max-height:calc(100vh - 68px);border-right:1px solid #e8eef5}h2{font-size:16px;margin:0 0 10px}p{line-height:1.5}.sub{font-size:13px;color:#66758d;margin:0 0 20px}.section{border-top:1px solid #edf0f4;padding:17px 0}.participant{display:flex;gap:7px;margin:10px 0;align-items:center}.num{font-size:12px;background:#e6edfc;border-radius:30px;color:#2457bb;padding:6px;flex:none}input,button{font:inherit}input[type=text]{min-width:0;flex:1;padding:10px 11px;border:1px solid #d8e0e9;border-radius:9px;font-size:13px}button{border:0;background:#245bd4;color:#fff;border-radius:9px;padding:10px 12px;cursor:pointer;font-size:13px}button.secondary{background:#f0f4fc;color:#1e4b9d}button.outline{background:white;color:#345;border:1px solid #d7dfeb}button:disabled{opacity:.6;cursor:wait}.partActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.partActions button{flex:1}.placeStatus{font-size:12px;color:#168054;min-height:16px;margin-left:31px}.controls{display:flex;gap:12px;align-items:center}.controls input{flex:1;accent-color:#245bd4}.stat{display:flex;justify-content:space-between;align-items:center;font-size:14px;background:#f1f5fd;padding:12px;border-radius:10px;margin:14px 0}.stat strong{color:#245bd4;font-size:21px}#results{display:flex;flex-direction:column;gap:8px}.result{background:#fff;border:1px solid #e1e7f0;padding:11px;border-radius:9px;cursor:pointer;text-align:left;color:#243047;width:100%}.result strong{font-size:13px}.result small{display:block;color:#64748b;margin-top:5px}.result:hover{border-color:#2f65dd}.state{font-size:12px;color:#6b7689;line-height:1.6;margin-top:10px;white-space:pre-wrap}.mapwrap{position:relative;min-height:500px}#map{height:calc(100vh - 68px);min-height:500px;width:100%}.legend{position:absolute;top:15px;right:15px;background:white;border:1px solid #e9edf3;padding:12px 15px;border-radius:10px;box-shadow:0 3px 15px #19325022;font-size:12px;line-height:2}.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px}.blue{background:#245bd4}.orange{background:#f18b37}.hint{font-size:12px;color:#788497;line-height:1.6}.warning{font-size:12px;color:#a24d11;background:#fff6e9;padding:9px;border-radius:8px}.label{display:inline-block;background:white;color:#234;padding:4px 7px;border-radius:8px;border:1px solid #ccd8eb;box-shadow:0 2px 7px #0002;white-space:nowrap;font-weight:600;font-size:12px}.info{width:205px;padding:10px;font-size:12px;line-height:1.6}.info b{font-size:14px}.info p{margin:6px 0 0;color:#58677a}.tripCard{border:1px solid #dce6f4;border-radius:10px;background:#fff;padding:12px;margin:8px 0}.tripHeader{display:flex;align-items:center;justify-content:space-between;gap:8px}.tripHeader b{font-size:14px}.tripTime{font-size:20px;color:#245bd4;font-weight:750}.tripMeta{color:#66758d;font-size:12px;margin-top:4px}.tripSummary{padding:10px;background:#f0f5ff;border-radius:9px;font-size:13px;margin:10px 0}.tripTitle{font-size:15px;font-weight:750;margin-bottom:5px}.tripError{color:#a24d11}.tripHelp{color:#66758d;font-size:12px;line-height:1.5}@media(max-width:770px){header{height:58px;padding:0 14px}.layout{grid-template-columns:1fr}aside{max-height:none;overflow:visible}#map{height:55vh;min-height:350px}.mapwrap{grid-row:1}.legend{top:8px;right:8px}.layout{min-height:0}}
+
+/* 지금 만나 2.0 — map-first UI (기존 지도·검색·대중교통 로직 유지) */
+:root{font-family:Inter,system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#202a38;background:#f5f7fa}
+body{background:#f5f7fa}
+.topbar{height:76px;padding:0 28px;border-bottom:1px solid #e6ebf0;box-shadow:0 1px 5px #17294406;position:relative;z-index:5}
+.brand{display:flex;gap:12px;align-items:center}.brand-symbol{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#1765e9;color:#fff;font-size:30px;line-height:1;font-weight:800}.brand-copy{display:flex;flex-direction:column;gap:1px}.brand-copy h1{font-size:23px;color:#17243a;font-weight:850;line-height:1.1;letter-spacing:-1.1px}.brand-period{color:#1765e9}.brand-copy small{color:#8795a9;font-weight:500;font-size:11px}.topbar-right{display:flex;gap:8px;align-items:center;color:#68788b;font-size:12px}.live-dot{background:#16ba85;width:7px;height:7px;border-radius:50%}.topbar-pill{font-weight:800;letter-spacing:.7px;color:#2868d8;background:#edf4ff;border:1px solid #dbe9ff;border-radius:16px;padding:5px 10px;margin-left:7px}
+.layout{display:grid;grid-template-columns:minmax(0,7fr) minmax(355px,3fr);min-height:calc(100vh - 76px)}
+.mapwrap{order:0;min-width:0;height:calc(100vh - 76px);min-height:560px;overflow:hidden;position:relative;background:#eaf1f7}
+#map{height:100%;min-height:560px}
+aside.control-panel{order:1;max-height:calc(100vh - 76px);overflow:auto;min-width:0;border-left:1px solid #e7ebf2;border-right:0;box-shadow:-8px 0 32px #10294709;scrollbar-width:thin;padding:0 23px 26px;background:#fff}
+.panel-hero{padding:25px 0 20px;border-bottom:1px solid #e9edf3;margin-bottom:18px}.eyebrow{display:block;font-weight:850;letter-spacing:1.4px;color:#1765e9;font-size:10px;margin-bottom:9px}.panel-hero h2{font-size:23px;line-height:1.3;margin:0 0 7px;letter-spacing:-1px;font-weight:830}.panel-hero p{font-size:12px;color:#7a8798;margin:0;line-height:1.6}
+.panel-section-title{display:flex;gap:10px;align-items:center;margin-bottom:10px}.panel-section-title h2{font-size:15px;font-weight:800;letter-spacing:-.4px;margin:0}.step-icon{font-size:10px;font-weight:800;width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#ecf3ff;color:#2566d8;flex-shrink:0}.compact-intro{margin:0 0 14px;font-size:12px}
+.section{padding:20px 0;border-top:1px solid #e9edf3}.section.range-section{margin-top:20px}.section.candidates-section{padding-bottom:18px}
+.participant{gap:8px;margin:9px 0}.num{font-size:11px;font-weight:750;border-radius:7px;padding:8px 7px;background:#f1f5fd;color:#446085}.participant input[type=text]{height:39px;border-radius:9px;border:1px solid #e1e6ef;background:#fbfcff;padding:8px 9px;font-size:12px}.participant input[type=text]:focus{outline:2px solid #c9defd;border-color:#80aceb}button{background:#1765e9;border-radius:9px;font-size:12px;font-weight:750;transition:background .15s,transform .12s}button:hover:not(:disabled){filter:brightness(.96)}button:active:not(:disabled){transform:translateY(1px)}button.secondary{background:#edf4ff;color:#1f61c9}button.outline{background:#fff;color:#52677e;border:1px solid #dee6ef}.partActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 9px}.partActions button:first-child{grid-column:1/-1;background:#ecf3ff;color:#1b62da}.partActions button{padding:11px 7px;font-size:12px}.placeStatus{margin-left:0;padding-left:3px;font-size:11px}.hint{font-size:11px;line-height:1.65;color:#8997a7}.controls{margin:13px 0 8px}.controls input{accent-color:#1765e9}.controls b{color:#1765e9;font-size:13px}#find{background:#1765e9!important;box-shadow:0 5px 13px #1765e92b;border-radius:10px!important;margin:11px 0 0;font-size:13px!important;letter-spacing:-.1px}.state{background:#f6f8fc;border:1px solid #edf1f7;padding:10px;border-radius:9px;font-size:11px;color:#64748b}
+.stat{background:#f1f6ff;color:#627388;padding:12px 14px;border-radius:12px;margin:12px 0}.stat strong{color:#1765e9;font-size:19px}#results{max-height:280px;overflow:auto;gap:7px;scrollbar-width:thin}.result{padding:12px 13px;border:1px solid #e7ebf2;border-radius:11px;transition:.15s}.result:hover,.result:focus-visible{border-color:#1765e9;background:#f6faff;outline:none}.result.is-selected{border-color:#1765e9;background:#edf4ff;box-shadow:0 0 0 1px #1765e91d}.result strong{font-size:13px}.result small{font-size:11px;color:#8491a2;line-height:1.55}
+.tripSummary{background:#f1f6ff;color:#1d56b4;padding:13px;font-size:13px;font-weight:750;border-radius:11px}.tripCard{background:#fff;border:1px solid #e6ecf4;border-radius:11px;margin:9px 0;padding:13px}.tripTime{font-size:24px;color:#1765e9}.tripMeta{font-size:11px}.tripHelp{margin-top:0}.tripTitle{font-size:17px}.warning{background:#fff9f0;color:#977047;font-size:11px;border:1px solid #ffedcf;padding:12px;border-radius:10px}
+.map-overlay-title{position:absolute;top:20px;left:20px;z-index:2;pointer-events:none;background:#fff;display:flex;gap:10px;align-items:center;padding:12px 16px;box-shadow:0 5px 20px #12294115;border:1px solid #e9edf3;border-radius:13px;max-width:calc(100% - 210px)}.map-overlay-title b{display:block;font-size:13px;color:#29394a}.map-overlay-title small{display:block;font-size:11px;color:#8897a7;margin-top:3px}.map-overlay-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:#ecf3ff;color:#1765e9;font-size:22px;font-weight:750}.legend{top:20px;right:20px;border-radius:12px;box-shadow:0 5px 20px #12294115;padding:10px 14px}.blue{background:#1765e9}.orange{background:#fb8b39}.label{border:1px solid #dbe7f8;border-radius:8px;box-shadow:0 3px 10px #1b355329}
+@media(max-width:1080px){.layout{grid-template-columns:minmax(0,6fr) minmax(330px,4fr)}aside.control-panel{padding:0 16px 22px}.map-overlay-title{max-width:calc(100% - 35px);top:12px;left:12px}.map-overlay-title small{display:none}.legend{top:auto;right:12px;bottom:20px}}
+@media(max-width:760px){.topbar{height:68px;padding:0 15px}.brand-symbol{width:37px;height:37px;font-size:27px}.brand-copy h1{font-size:20px}.brand-copy small{font-size:10px}.topbar-right{font-size:10px}.topbar-right>span:nth-child(2){display:none}.layout{display:flex;flex-direction:column;min-height:0}.mapwrap{order:0;height:45vh;min-height:310px;flex-shrink:0}#map{height:100%;min-height:310px}aside.control-panel{order:1;max-height:none;overflow:visible;border-left:0;border-top:1px solid #e5ebf3;padding:0 17px 22px}.panel-hero{padding-top:22px}.map-overlay-title{top:11px;left:11px;padding:9px 11px}.map-overlay-title b{font-size:11px}.legend{top:auto;bottom:12px;right:10px;padding:7px 10px;font-size:10px}.legend div:last-child{display:none}#results{max-height:280px}}
 </style>
 </head>
 <body>
-<header><h1>📍 지금 만나</h1><span>우리 모두에게 공평한 만남 장소 찾기</span></header>
+<header class="topbar">
+  <div class="brand"><div class="brand-symbol">⌖</div><div class="brand-copy"><h1>지금 만나<span class="brand-period">.</span></h1><small>모두에게 가까운 곳에서, 더 쉽게 만나요</small></div></div>
+  <div class="topbar-right"><span class="live-dot"></span><span>수도권 핫플레이스 101곳</span><span class="topbar-pill">BETA</span></div>
+</header>
 <div class="layout">
-<aside>
-  <h2>출발 위치 설정</h2><p class="sub">참가자 위치를 입력하고 검색해 선택하세요. 선택한 위치를 기준으로 근처 후보 역만 지도에 표시됩니다.</p>
+<aside class="control-panel">
+  <div class="panel-hero"><span class="eyebrow">MEETING PLANNER</span><h2>우리 어디서 만날까?</h2><p>서로 다른 출발지에서도, 모두에게 가까운 만남 장소를 찾아보세요.</p></div>
+  <div class="panel-section-title"><span class="step-icon">01</span><h2>누가 어디서 출발하나요?</h2></div>
+  <p class="sub compact-intro">출발지를 검색하거나 지도에서 직접 지정해 주세요.</p>
   <div id="participants"></div>
   <div class="partActions"><button class="secondary" id="add">+ 참가자 추가</button><button class="outline" id="mine">📍 내 현재 위치</button><button class="outline" id="manual">🖱️ 지도에서 직접 지정</button></div>
   <p class="hint">PC의 위치는 IP·Wi-Fi 기반으로 부정확할 수 있어요. 지도에서 직접 지정하면 1번 참가자의 출발지로 설정됩니다.</p>
-  <section class="section">
-    <h2>후보 검색 범위</h2>
+  <section class="section range-section">
+    <div class="panel-section-title"><span class="step-icon">02</span><h2>검색 범위 설정</h2></div>
     <div class="controls"><input id="buffer" type="range" min="0" max="15" step="0.5" value="3"><b id="bufferVal">3 km</b></div>
     <p class="hint">역 좌표는 첫 검색 때 최대 5개씩 병렬 조회하고, 이후 검색에서는 저장된 좌표를 재사용합니다.</p><p class="hint">3명 이상: 모든 출발지를 둘러싼 다각형 내부와 경계에서 설정 거리 이내<br>2명: 두 출발지를 잇는 선에서 설정 거리 이내<br>1명: 출발지에서 설정 거리 이내</p>
     <button id="find" style="width:100%;font-weight:700;padding:13px">주변 만남 역 찾기</button>
     <div class="state" id="status">카카오맵을 불러오는 중입니다…</div>
   </section>
-  <section class="section">
-    <h2>추천 후보 역</h2>
+  <section class="section candidates-section">
+    <div class="panel-section-title"><span class="step-icon">03</span><h2>우리의 만남 후보</h2></div>
     <div class="stat"><span>현재 조건에 맞는 후보</span><strong id="count">0 / 101</strong></div>
     <div id="results"><p class="sub">출발 위치를 선택한 뒤 검색해 주세요.</p></div>
   </section>
-  <section class="section" id="transitPanel">
-    <h2>🚇 선택한 역까지 대중교통 이동시간</h2>
+  <section class="section transit-section" id="transitPanel">
+    <div class="panel-section-title"><span class="step-icon">04</span><h2>대중교통 예상 이동시간</h2></div>
     <p class="tripHelp">후보 역 이름 또는 지도 마커를 누르면 참가자별 예상 이동시간을 조회합니다.</p>
     <div id="transitResults" aria-live="polite"><p class="sub">아직 선택한 역이 없어요.</p></div>
   </section>
   <p class="warning">대중교통 시간은 실제 열차 도착 시각을 보장하지 않는 API 경로 예상값입니다. 대중교통 REST API 사용을 위해 별도 Worker 설정이 필요합니다.</p>
 </aside>
-<div class="mapwrap"><div id="map"></div><div class="legend"><div><span class="dot blue"></span>참가자 위치</div><div><span class="dot orange"></span>추천 후보 역</div><div style="font-size:11px;color:#748094">파란 선: 검색 기준 영역</div></div></div>
+<div class="mapwrap"><div id="map"></div><div class="map-overlay-title"><span class="map-overlay-icon">⌁</span><div><b>우리의 중간지점을 찾아봐요</b><small>출발지를 지정한 뒤 후보를 탐색하세요</small></div></div><div class="legend"><div><span class="dot blue"></span>참가자 위치</div><div><span class="dot orange"></span>추천 후보 역</div><div style="font-size:11px;color:#748094">파란 선: 검색 기준 영역</div></div></div>
 </div>
 <script>
 // 중요: 카카오디벨로퍼스의 Default JS Key(웹 JavaScript 키)만 입력하세요.
@@ -308,6 +332,7 @@ async function showTransitTimes(station){
   }else summary.textContent='조회 성공 '+times.length+' / '+ready.length+'명 · 전체 결과가 없어 공평성 비교를 생략합니다.';
 }
 function showStation(p){
+  document.querySelectorAll('#results .result').forEach(el=>el.classList.toggle('is-selected',el.dataset.stationId===p.id));
   showTransitTimes(p);
   const pos=new kakao.maps.LatLng(p.lat,p.lng);
   map.panTo(pos);
@@ -368,7 +393,7 @@ async function findCandidates(){
     if(!hits.length)$('results').innerHTML='<p class="sub">설정 범위에 해당하는 역이 없어요. 검색 범위를 넓혀 보세요.</p>';
     const fragment=document.createDocumentFragment();
     hits.forEach(p=>{
-      const b=document.createElement('button');b.className='result';
+      const b=document.createElement('button');b.className='result';b.dataset.stationId=p.id;
       const strong=document.createElement('strong');strong.textContent='🚉 '+p.name;
       const small=document.createElement('small');small.textContent=p.description+' · '+p.lines.join(' / ');
       b.append(strong,small);b.addEventListener('click',()=>showStation(p));fragment.appendChild(b);
