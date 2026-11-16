@@ -19,7 +19,7 @@
   <section class="section">
     <h2>후보 검색 범위</h2>
     <div class="controls"><input id="buffer" type="range" min="0" max="15" step="0.5" value="3"><b id="bufferVal">3 km</b></div>
-    <p class="hint">3명 이상: 모든 출발지를 둘러싼 다각형 내부와 경계에서 설정 거리 이내<br>2명: 두 출발지를 잇는 선에서 설정 거리 이내<br>1명: 출발지에서 설정 거리 이내</p>
+    <p class="hint">역 좌표는 첫 검색 때 최대 5개씩 병렬 조회하고, 이후 검색에서는 저장된 좌표를 재사용합니다.</p><p class="hint">3명 이상: 모든 출발지를 둘러싼 다각형 내부와 경계에서 설정 거리 이내<br>2명: 두 출발지를 잇는 선에서 설정 거리 이내<br>1명: 출발지에서 설정 거리 이내</p>
     <button id="find" style="width:100%;font-weight:700;padding:13px">주변 만남 역 찾기</button>
     <div class="state" id="status">카카오맵을 불러오는 중입니다…</div>
   </section>
@@ -35,15 +35,17 @@
 <script>
 // 중요: 카카오디벨로퍼스의 Default JS Key(웹 JavaScript 키)만 입력하세요.
 // REST API 키 / Admin 키를 이 파일에 넣지 마세요.
-const KAKAO_JS_KEY = 'YOUR_JS_KEY';
+const KAKAO_JS_KEY = '4e65c131766c8aee76696d7f9167c6cc';
 const DATA_FILE = './jigeum_manna_station_candidates_101.json';
 
 let map, placesService, polygonDrawing, lineDrawing, rangeDrawing;
 let userMarkers = [], stationMarkers = [], infowindows = [], allPlaces = [];
 let persons = [], nextPersonId = 1, coordsById = {};
 let manualLocationMode = false, accuracyCircle = null;
+const stationCoords = new Map();
+const stationRequests = new Map();
+const GEOCODE_CONCURRENCY = 5; // 카카오 장소 검색 과도한 동시 호출 방지
 const $ = id => document.getElementById(id);
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const setStatus = text => $('status').textContent = text;
 
 function loadKakao(){
@@ -151,18 +153,61 @@ function distanceToRegion(p,shape){
   return Math.min(...shape.map((a,i)=>segDist(p,a,shape[(i+1)%shape.length])));
 }
 function cacheKey(p){return 'jm_station_v2_'+p.id;}
-async function getStationCoords(p){
-  if(Number.isFinite(p.latitude)&&Number.isFinite(p.longitude))return {lat:p.latitude,lng:p.longitude};
-  try{const cached=JSON.parse(localStorage.getItem(cacheKey(p)));if(cached&&Number.isFinite(cached.lat)&&Number.isFinite(cached.lng))return cached;}catch(e){}
-  const variants=[p.search_query,p.name+' '+p.province,p.name];
-  for(const term of variants){
-    const found=await keyword(term);
-    // 같은 이름의 다른 지역 검색 결과를 최대한 피하기 위해 역 이름 일치 우선
-    const exact=found.find(x=>x.place_name.replace(/\s/g,'').includes(p.name.replace(/\s/g,'')));
-    if(exact){const position={lat:Number(exact.y),lng:Number(exact.x)};localStorage.setItem(cacheKey(p),JSON.stringify(position));return position;}
-    await sleep(90);
-  }
+function fromCache(p){
+  if(stationCoords.has(p.id))return stationCoords.get(p.id);
+  try{
+    const cached=JSON.parse(localStorage.getItem(cacheKey(p)));
+    if(cached&&Number.isFinite(cached.lat)&&Number.isFinite(cached.lng)){
+      stationCoords.set(p.id,cached);
+      return cached;
+    }
+  }catch(e){} // 시크릿 모드 등에서 저장소 접근이 실패해도 계속 동작
   return null;
+}
+async function getStationCoords(p){
+  if(Number.isFinite(p.latitude)&&Number.isFinite(p.longitude)){
+    return {lat:p.latitude,lng:p.longitude};
+  }
+  const cached=fromCache(p);
+  if(cached)return cached;
+  if(stationRequests.has(p.id))return stationRequests.get(p.id);
+  const task=(async()=>{
+    const variants=[p.search_query,p.name+' '+p.province,p.name];
+    for(const term of new Set(variants.filter(Boolean))){
+      const found=await keyword(term);
+      const normalize=t=>String(t).replace(/\s/g,'');
+      const exact=found.find(x=>normalize(x.place_name).includes(normalize(p.name)));
+      if(exact){
+        const position={lat:Number(exact.y),lng:Number(exact.x)};
+        if(Number.isFinite(position.lat)&&Number.isFinite(position.lng)){
+          stationCoords.set(p.id,position);
+          try{localStorage.setItem(cacheKey(p),JSON.stringify(position));}catch(e){}
+          return position;
+        }
+      }
+    }
+    return null;
+  })();
+  stationRequests.set(p.id,task);
+  try{return await task;}
+  finally{stationRequests.delete(p.id);}
+}
+// 최초 조회만 병렬로 진행. 다음부터는 메모리/브라우저 캐시로 즉시 반환.
+async function resolveAllStations(onProgress){
+  const resolved=new Array(allPlaces.length);
+  let cursor=0, done=0, failed=0;
+  async function worker(){
+    while(cursor<allPlaces.length){
+      const i=cursor++;
+      try{resolved[i]=await getStationCoords(allPlaces[i]);}
+      catch(e){resolved[i]=null;}
+      if(!resolved[i])failed++;
+      done++;
+      if(done===allPlaces.length||done%5===0)onProgress(done,failed);
+    }
+  }
+  await Promise.all(Array.from({length:Math.min(GEOCODE_CONCURRENCY,allPlaces.length)},worker));
+  return {resolved,failed};
 }
 function clearSearchDrawings(){if(polygonDrawing)polygonDrawing.setMap(null);if(lineDrawing)lineDrawing.setMap(null);if(rangeDrawing)rangeDrawing.setMap(null);polygonDrawing=lineDrawing=rangeDrawing=null;}
 function drawRegion(geoShape,dist){
@@ -195,39 +240,54 @@ async function findCandidates(){
   if(ready.length!==persons.length){setStatus('모든 참가자의 출발 위치를 검색해서 설정해 주세요.');return;}
   if(!allPlaces.length){setStatus('후보 장소 JSON이 아직 로드되지 않았습니다.');return;}
   running=true;$('find').disabled=true;
-  clearOverlays(stationMarkers);infowindows=[];
-  const refLat=ready.reduce((a,p)=>a+p.lat,0)/ready.length*Math.PI/180;
-  const shape=hull(ready.map(p=>xy(p,refLat)));
-  const geoShape=shape.map(p=>({lat:p.y/6371*180/Math.PI,lng:p.x/(6371*Math.cos(refLat))*180/Math.PI}));
-  const buffer=Number($('buffer').value);
-  drawRegion(geoShape,buffer);
-  let hits=[], failed=0;
-  for(let i=0;i<allPlaces.length;i++){
-    const station=allPlaces[i];
-    const point=await getStationCoords(station);
-    if(!point){failed++;}else{
-      const distance=distanceToRegion(xy(point,refLat),shape);
-      if(distance<=buffer+1e-8)hits.push({...station,...point,distance});
+  try{
+    const refLat=ready.reduce((a,p)=>a+p.lat,0)/ready.length*Math.PI/180;
+    const shape=hull(ready.map(p=>xy(p,refLat)));
+    const geoShape=shape.map(p=>({lat:p.y/6371*180/Math.PI,lng:p.x/(6371*Math.cos(refLat))*180/Math.PI}));
+    const buffer=Number($('buffer').value);
+    drawRegion(geoShape,buffer);
+
+    let resolved,failed;
+    const cachedCount=allPlaces.filter(p=>Number.isFinite(p.latitude)&&Number.isFinite(p.longitude)||fromCache(p)).length;
+    if(cachedCount===allPlaces.length){
+      resolved=allPlaces.map(p=>fromCache(p)||{lat:p.latitude,lng:p.longitude});
+      failed=0;
+    }else{
+      setStatus('역 좌표 준비 중… 저장된 좌표 '+cachedCount+' / '+allPlaces.length+'곳');
+      ({resolved,failed}=await resolveAllStations((done,errors)=>{
+        setStatus('역 좌표 조회: '+done+'/'+allPlaces.length+(errors?' · 미확인 '+errors+'곳':''));
+      }));
     }
-    if(i%6===0||i===allPlaces.length-1){setStatus('101개 장소 위치 확인: '+(i+1)+'/101'+(failed?' · 위치 미확인 '+failed+'곳':''));}
-    await sleep(80);
-  }
-  hits.sort((a,b)=>a.distance-b.distance||a.name.localeCompare(b.name,'ko'));
-  hits.forEach(addStation);
-  $('count').textContent=hits.length+' / '+allPlaces.length;
-  $('results').innerHTML='';
-  if(!hits.length)$('results').innerHTML='<p class="sub">설정 범위에 해당하는 역이 없어요. 검색 범위를 넓혀 보세요.</p>';
-  hits.forEach(p=>{
-    const b=document.createElement('button');b.className='result';
-    const strong=document.createElement('strong');strong.textContent='🚉 '+p.name;
-    const small=document.createElement('small');small.textContent=p.description+' · '+p.lines.join(' / ');
-    b.append(strong,small);b.addEventListener('click',()=>showStation(p));$('results').appendChild(b);
-  });
-  const bounds=new kakao.maps.LatLngBounds();ready.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));
-  hits.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));
-  map.setBounds(bounds,55,55,55,55);if(ready.length===1&&!hits.length)map.setLevel(7);
-  setStatus('검색 완료: '+hits.length+'곳 표시'+(failed?' · 위치 확인 실패 '+failed+'곳 (표시 제외)':'')+'\n실제 대중교통 이동시간은 아직 반영되지 않았습니다.');
-  running=false;$('find').disabled=false;
+    // 선·다각형과의 거리 계산은 네트워크 호출 없이 메모리에서 처리
+    const hits=[];
+    for(let i=0;i<allPlaces.length;i++){
+      const point=resolved[i];
+      if(!point)continue;
+      const distance=distanceToRegion(xy(point,refLat),shape);
+      if(distance<=buffer+1e-8)hits.push({...allPlaces[i],...point,distance});
+    }
+    hits.sort((a,b)=>a.distance-b.distance||a.name.localeCompare(b.name,'ko'));
+    clearOverlays(stationMarkers);
+    infowindows.forEach(info=>info.close());infowindows=[];
+    hits.forEach(addStation);
+    $('count').textContent=hits.length+' / '+allPlaces.length;
+    $('results').innerHTML='';
+    if(!hits.length)$('results').innerHTML='<p class="sub">설정 범위에 해당하는 역이 없어요. 검색 범위를 넓혀 보세요.</p>';
+    const fragment=document.createDocumentFragment();
+    hits.forEach(p=>{
+      const b=document.createElement('button');b.className='result';
+      const strong=document.createElement('strong');strong.textContent='🚉 '+p.name;
+      const small=document.createElement('small');small.textContent=p.description+' · '+p.lines.join(' / ');
+      b.append(strong,small);b.addEventListener('click',()=>showStation(p));fragment.appendChild(b);
+    });
+    $('results').appendChild(fragment);
+    const bounds=new kakao.maps.LatLngBounds();
+    ready.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));
+    hits.forEach(p=>bounds.extend(new kakao.maps.LatLng(p.lat,p.lng)));
+    map.setBounds(bounds,55,55,55,55);if(ready.length===1&&!hits.length)map.setLevel(7);
+    setStatus('검색 완료: '+hits.length+'곳 표시'+(failed?' · 좌표 미확인 '+failed+'곳':'')+'\n한 번 조회된 역은 다음 검색부터 캐시를 사용해 빠르게 계산합니다.');
+  }catch(e){setStatus('후보 검색 중 오류가 발생했어요: '+e.message);}
+  finally{running=false;$('find').disabled=false;}
 }
 $('add').addEventListener('click',addPerson);
 function setFirstPersonLocation(lat,lng,name){
