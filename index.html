@@ -30,6 +30,18 @@ aside.control-panel{order:1;max-height:calc(100vh - 76px);overflow:auto;min-widt
 .action-wide{width:100%;padding:13px;margin:8px 0 12px;background:#1664e8;font-size:13px}.ranked-station{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;background:#f7faff;border:1px solid #dce9fc;color:#1f3251;margin:8px 0;padding:13px;border-radius:12px}.ranked-station strong{font-size:13px}.ranked-station small{color:#62748f;font-weight:500;font-size:11px}.ranked-station:first-of-type{border-color:#91b9fa;background:#eef5ff}
 .modal-cover,.rooms-cover{position:fixed;inset:0;z-index:100;background:#101e3490;display:flex;align-items:center;justify-content:center;padding:18px}.modal-card{position:relative;width:min(100%,440px);background:#fff;border-radius:20px;padding:28px;box-shadow:0 25px 75px #06183244}.modal-card h2{font-size:24px;margin:0 0 18px}.modal-close{position:absolute;top:16px;right:16px;background:#f0f4fa;color:#31415a;padding:4px 10px;font-size:22px}.tabs{display:grid;grid-template-columns:1fr 1fr;background:#f0f4fa;border-radius:12px;padding:4px;gap:4px;margin-bottom:19px}.tabs button{background:transparent;color:#6d7d95}.tabs button.selected{background:#fff;color:#1462dd;box-shadow:0 2px 10px #1b35521a}.modal-card label{display:block;font-size:12px;font-weight:700;color:#42536b;margin:12px 0}.modal-card label input{display:block;width:100%;margin-top:6px;padding:12px;font-size:14px}.own-id{font-weight:700!important;color:#195bc5!important;background:#eff5ff;padding:10px;border-radius:10px}.feedback{font-size:12px;line-height:1.5;color:#275ab3;white-space:pre-wrap}.rooms-cover{background:#f3f6fb;display:block;overflow:auto;padding:25px}.rooms-inner{max-width:1120px;margin:0 auto}.rooms-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;background:#fff;border-radius:20px;padding:25px;margin-bottom:18px}.rooms-head h2{font-size:28px;margin:0 0 7px}.rooms-head p{color:#73829a;margin:0;font-size:13px}.rooms-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.room-card{background:#fff;padding:25px;border-radius:18px;min-width:0;box-shadow:0 3px 15px #12294a0a}.room-card.full{grid-column:1/-1}.room-card h3{font-size:18px;margin:0 0 12px}.room-card h4{margin:20px 0 10px}.room-card>p{color:#74839b;font-size:13px}.inline-form{display:flex;gap:8px}.inline-form input{min-width:0;flex:1}.inline-form button{white-space:nowrap}.room-section-head{margin-top:28px!important}.room-entry{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid #e5ebf4;padding:13px;border-radius:12px;margin:10px 0}.room-entry strong{min-width:150px}.room-entry input{min-width:220px;flex:1}.friend-line{background:#f5f8ff;padding:10px;border-radius:9px;margin:5px 0;display:flex;justify-content:space-between;align-items:center}
 @media(max-width:760px){.topbar-right{gap:4px}.header-btn{font-size:10px;padding:7px}.topbar-pill,.live-dot{display:none}.whoami{display:none!important}.rooms-grid{grid-template-columns:1fr}.room-card.full{grid-column:1}.rooms-head{flex-wrap:wrap}.rooms-cover{padding:12px}.room-entry input{min-width:100%}}
+
+/* 모임의 실시간 출발지 */
+.room-picker{margin:12px 0 16px;padding:14px;border:1px solid #dce6fb;background:#f7faff;border-radius:13px}
+.room-picker label{display:block;font-size:12px;font-weight:750;margin:0 0 7px;color:#27466b}
+.room-picker select{width:100%;height:39px;border:1px solid #d1deee;background:#fff;border-radius:9px;padding:0 10px;font:inherit;font-size:13px}
+.live-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.live-controls button{flex:1;min-width:120px}
+.live-row{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:9px 11px;background:white;border:1px solid #e3ebf7;border-radius:9px;margin:7px 0;font-size:12px}
+.live-state{font-size:12px;color:#576c85;line-height:1.6;margin-top:10px;white-space:pre-wrap}
+.live-tag{font-size:10px;color:#1f7a54;background:#e4f9ed;border-radius:30px;padding:3px 6px;white-space:nowrap}
+.live-off{font-size:10px;color:#8894a5}
+.room-participant-note{font-size:11px;color:#64748b;margin:8px 0;line-height:1.55}
 </style>
 </head>
 <body>
@@ -42,6 +54,19 @@ aside.control-panel{order:1;max-height:calc(100vh - 76px);overflow:auto;min-widt
   <div class="panel-hero"><span class="eyebrow">MEETING PLANNER</span><h2>우리 어디서 만날까?</h2><p>서로 다른 출발지에서도, 모두에게 가까운 만남 장소를 찾아보세요.</p></div>
   <div class="panel-section-title"><span class="step-icon">01</span><h2>누가 어디서 출발하나요?</h2></div>
   <p class="sub compact-intro">출발지를 검색하거나 지도에서 직접 지정해 주세요.</p>
+  <div class="room-picker">
+    <label for="roomSelect">👥 모임 선택하기</label>
+    <select id="roomSelect"><option value="">직접 출발지 입력 (기본)</option></select>
+    <div id="roomLiveTools" hidden>
+      <p class="room-participant-note">모임원 모두가 자신의 기기에서 동의해야 위치가 보여요. 위치 공유 중인 사람만 중간지점 계산에 참여합니다.</p>
+      <div class="live-controls">
+        <button id="startRoomLocation" type="button">📍 내 실시간 위치 공유 시작</button>
+        <button id="stopRoomLocation" type="button" class="outline" disabled>공유 중지</button>
+      </div>
+      <div id="roomMemberLocations" class="live-state" aria-live="polite"></div>
+    </div>
+    <p id="roomSelectHint" class="hint">로그인 후 모임을 만들거나 참여하면 여기서 선택할 수 있어요.</p>
+  </div>
   <div id="participants"></div>
   <div class="partActions"><button class="secondary" id="add">+ 참가자 추가</button><button class="outline" id="mine">📍 내 현재 위치</button><button class="outline" id="manual">🖱️ 지도에서 직접 지정</button></div>
   <p class="hint">PC의 위치는 IP·Wi-Fi 기반으로 부정확할 수 있어요. 지도에서 직접 지정하면 1번 참가자의 출발지로 설정됩니다.</p>
@@ -151,11 +176,24 @@ function loadKakao(){
   document.head.appendChild(script);
 }
 function addPerson(){
+  if(activeRoomId){setStatus('모임 모드에서는 직접 참가자를 추가할 수 없어요. 모임을 해제해 주세요.');return;}
   const person = {id:nextPersonId++, name:'',lat:null,lng:null};
   persons.push(person);
   renderPersons();
 }
 function renderPersons(){
+  if(activeRoomId){
+    $('participants').innerHTML='<p class="room-participant-note">모임에 참여한 회원의 현재 위치를 표시합니다. 수동 출발지로 바꾸려면 위에서 ‘직접 출발지 입력’을 선택하세요.</p>';
+    const box=document.createElement('div');
+    persons.forEach((p,i)=>{
+      const row=document.createElement('div');row.className='live-row';
+      const name=document.createElement('span');name.textContent='👤 '+p.name;
+      const tag=document.createElement('span');tag.className='live-tag';tag.textContent='위치 공유 중';
+      row.append(name,tag);box.append(row);
+    });
+    if(!persons.length)box.textContent='아직 위치를 공유 중인 모임원이 없어요.';
+    $('participants').append(box);return;
+  }
   $('participants').innerHTML='';
   persons.forEach((person,i)=>{
     const box=document.createElement('div');
@@ -448,16 +486,19 @@ async function findCandidates(){
 }
 $('add').addEventListener('click',addPerson);
 function setFirstPersonLocation(lat,lng,name){
+  if(activeRoomId){setStatus('모임 모드에서는 ‘내 실시간 위치 공유 시작’을 눌러 위치를 설정해 주세요.');return;}
   if(!persons.length)addPerson();
   const p=persons[0];p.lat=lat;p.lng=lng;p.name=name;
   renderPersons();drawPersons();
 }
 $('manual').addEventListener('click',()=>{
+  if(activeRoomId){setStatus('모임 모드에서는 지도에서 위치를 지정할 수 없어요. 먼저 직접 입력 모드로 전환해 주세요.');return;}
   manualLocationMode=!manualLocationMode;
   $('manual').textContent=manualLocationMode?'취소':'🖱️ 지도에서 직접 지정';
   setStatus(manualLocationMode?'지도에서 실제 출발 위치를 한 번 클릭해 주세요. (1번 참가자에 적용)':'지도에서 위치 지정이 취소됐어요.');
 });
 $('mine').addEventListener('click',()=>{
+  if(activeRoomId){setStatus('모임 모드에서는 아래의 ‘내 실시간 위치 공유 시작’을 이용해 주세요.');return;}
   if(!navigator.geolocation){setStatus('이 브라우저는 위치 기능을 지원하지 않습니다. 지도에서 직접 지정해 주세요.');return;}
   manualLocationMode=false;$('manual').textContent='🖱️ 지도에서 직접 지정';
   setStatus('브라우저 위치를 조회 중이에요. 위치 권한을 허용해 주세요.');
@@ -525,6 +566,10 @@ function haversine(a,b){const rad=Math.PI/180,dlat=(a.lat-b.lat)*rad,dlng=(a.lng
 
 // ── Supabase Auth + 모임/친구 기능 ──────────────────────────────────────
 let db=null,sessionUser=null,signingUp=false;
+let activeRoomId='', manualPersonsBackup=null, roomLiveChannel=null;
+let liveSharing=false, liveLocationTimer=null, liveBusy=false, roomRefreshTimer=null;
+let liveMembers=[],roomReloadInFlight=false,roomGeneration=0, liveRefreshDebounce=null;
+let lastRoomCandidateRefresh=0;
 const supaReady=()=>!SUPABASE_URL.includes('YOUR_')&&!SUPABASE_ANON_KEY.includes('YOUR_')&&!!window.supabase?.createClient;
 const message=(id,s)=>{$(id).textContent=s;};
 function ensureDb(){
@@ -584,6 +629,159 @@ $('authForm').addEventListener('submit',async e=>{
  }
  finally{$('authSubmit').disabled=false;}
 });
+
+// ── 모임 선택 + opt-in 위치 공유 (Supabase Realtime) ──
+function isValidPoint(p){return Number.isFinite(p.lat)&&Number.isFinite(p.lng)&&p.lat>=-90&&p.lat<=90&&p.lng>=-180&&p.lng<=180;}
+function updateRoomControls(){
+ $('roomLiveTools').hidden=!activeRoomId;
+ $('add').disabled=!!activeRoomId;
+ $('mine').disabled=!!activeRoomId;
+ $('manual').disabled=!!activeRoomId;
+ $('startRoomLocation').disabled=!activeRoomId||liveSharing;
+ $('stopRoomLocation').disabled=!activeRoomId||!liveSharing;
+ $('roomSelectHint').textContent=activeRoomId?'선택한 모임에만 위치가 보여요. 공유를 끄면 DB에서도 삭제합니다.':'로그인하면 가입한 모임을 선택할 수 있어요.';
+}
+async function loadRoomOptions(){
+ const select=$('roomSelect');
+ const previous=activeRoomId;
+ select.replaceChildren(new Option('직접 출발지 입력 (기본)',''));
+ if(!sessionUser||!db){updateRoomControls();return;}
+ const {data,error}=await db.from('room_members').select('room_id, rooms(id,title)').eq('user_id',sessionUser.id);
+ if(error){$('roomSelectHint').textContent='모임 목록을 불러오지 못했어요: '+error.message;return;}
+ (data||[]).forEach(entry=>{if(entry.rooms)select.add(new Option(entry.rooms.title,entry.room_id));});
+ if(previous&&Array.from(select.options).some(o=>o.value===previous))select.value=previous;
+ else if(previous)await chooseRoom('');
+ updateRoomControls();
+}
+async function stopRoomSharing(){
+ const oldId=activeRoomId,oldUser=sessionUser?.id;
+ liveSharing=false;
+ if(liveLocationTimer)clearInterval(liveLocationTimer);
+ liveLocationTimer=null;
+ updateRoomControls();
+ if(db&&oldId&&oldUser){
+   const {error}=await db.from('room_live_locations').delete().eq('room_id',oldId).eq('user_id',oldUser);
+   if(error)console.warn('위치 공유 중지 요청 실패:',error.message);
+ }
+}
+function stopRoomListeners(){
+ roomGeneration++;
+ if(roomRefreshTimer)clearInterval(roomRefreshTimer);
+ if(liveRefreshDebounce)clearTimeout(liveRefreshDebounce);
+ roomRefreshTimer=null;liveRefreshDebounce=null;
+ if(roomLiveChannel&&db){db.removeChannel(roomLiveChannel);roomLiveChannel=null;}
+}
+async function chooseRoom(roomId){
+ const changing=roomId!==activeRoomId;
+ if(changing&&liveSharing)await stopRoomSharing();
+ if(changing)stopRoomListeners();
+ if(!activeRoomId&&roomId)manualPersonsBackup=persons.map(p=>({...p}));
+ activeRoomId=roomId;
+ if(!roomId){
+   persons=(manualPersonsBackup||persons).map(p=>({...p}));manualPersonsBackup=null;
+   liveMembers=[];
+   $('roomMemberLocations').textContent='';
+   renderPersons();if(map)drawPersons();
+   $('roomSelect').value='';updateRoomControls();
+   setStatus('직접 출발지 입력으로 돌아왔어요.');return;
+ }
+ $('roomSelect').value=roomId;
+ persons=[];renderPersons();if(map)drawPersons();
+ updateRoomControls();
+ const gen=roomGeneration;
+ await refreshRoomLocations(gen);
+ if(activeRoomId!==roomId||gen!==roomGeneration)return;
+ roomLiveChannel=db.channel('room-location-'+roomId+'-'+Math.random().toString(36).slice(2))
+   .on('postgres_changes',{event:'*',schema:'public',table:'room_live_locations',filter:'room_id=eq.'+roomId},()=>scheduleRoomRefresh(gen))
+   .subscribe(status=>{if(status==='CHANNEL_ERROR')$('roomMemberLocations').textContent='실시간 연결 오류가 발생했어요. 잠시 후 자동 조회를 시도합니다.';});
+ // Realtime 이벤트 누락/재연결, 위치 만료를 보완하는 저빈도 동기화
+ roomRefreshTimer=setInterval(()=>refreshRoomLocations(gen),20000);
+ setStatus('모임을 연결했어요. 위치 공유를 허용한 모임원만 지도에 나타납니다.');
+}
+function scheduleRoomRefresh(gen){
+ if(liveRefreshDebounce)clearTimeout(liveRefreshDebounce);
+ liveRefreshDebounce=setTimeout(()=>refreshRoomLocations(gen),350);
+}
+async function refreshRoomLocations(gen=roomGeneration){
+ if(!activeRoomId||!db||!sessionUser||roomReloadInFlight||gen!==roomGeneration)return;
+ roomReloadInFlight=true;
+ const roomId=activeRoomId;
+ try{
+   const {data:members,error:memberError}=await db.from('room_members').select('user_id').eq('room_id',roomId);
+   if(memberError)throw memberError;
+   const ids=(members||[]).map(m=>m.user_id);
+   const [{data:profiles,error:profileError},{data:locations,error:locationError}]=await Promise.all([
+     ids.length?db.from('profiles').select('id,display_name,username').in('id',ids):Promise.resolve({data:[]}),
+     db.from('room_live_locations').select('user_id,latitude,longitude,accuracy_m,updated_at').eq('room_id',roomId)
+   ]);
+   if(profileError)throw profileError;if(locationError)throw locationError;
+   if(gen!==roomGeneration||activeRoomId!==roomId)return;
+   const nameById=new Map((profiles||[]).map(p=>[p.id,p.display_name||p.username||'참가자']));
+   const now=Date.now(),live=new Map((locations||[]).filter(l=>now-Date.parse(l.updated_at)<120000).map(l=>[l.user_id,l]));
+   const newPersons=ids.filter(id=>live.has(id)).map(id=>{
+     const loc=live.get(id);return {id,name:nameById.get(id)||'참가자',lat:Number(loc.latitude),lng:Number(loc.longitude),userId:id};
+   }).filter(isValidPoint);
+   const previous=persons.map(p=>p.userId+':'+p.lat.toFixed(5)+':'+p.lng.toFixed(5)).join('|');
+   const next=newPersons.map(p=>p.userId+':'+p.lat.toFixed(5)+':'+p.lng.toFixed(5)).join('|');
+   persons=newPersons;liveMembers=ids;
+   const panel=$('roomMemberLocations');panel.replaceChildren();
+   const count=document.createElement('strong');count.textContent='현재 공유 중 '+newPersons.length+'명 / 전체 '+ids.length+'명';panel.append(count);
+   ids.forEach(id=>{
+     const line=document.createElement('div');line.className='live-row';
+     const name=document.createElement('span');name.textContent=nameById.get(id)||'참가자';
+     const status=document.createElement('span');status.className=live.has(id)?'live-tag':'live-off';status.textContent=live.has(id)?'● 위치 공유 중':'위치 미공유 / 만료';
+     line.append(name,status);panel.append(line);
+   });
+   if(previous!==next){
+     renderPersons();if(map)drawPersons();
+     // 이미 찾은 역 좌표가 있다면 모임 이동에 따라 검색 영역을 갱신
+     if(newPersons.length&&allPlaces.length&&Date.now()-lastRoomCandidateRefresh>12000){
+       lastRoomCandidateRefresh=Date.now();findCandidates();
+     }
+   }
+ }catch(err){
+   if(gen===roomGeneration)$('roomMemberLocations').textContent='모임 위치를 조회하지 못했어요: '+err.message;
+ }finally{roomReloadInFlight=false;}
+}
+async function publishMyLocation(){
+ if(!liveSharing||liveBusy||!activeRoomId||!sessionUser)return;
+ if(!navigator.geolocation){$('roomMemberLocations').textContent='브라우저가 위치 정보를 지원하지 않아요.';await stopRoomSharing();return;}
+ liveBusy=true;
+ const targetRoom=activeRoomId,targetUser=sessionUser.id;
+ try{
+   const position=await new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,{enableHighAccuracy:true,timeout:15000,maximumAge:5000}));
+   if(!liveSharing||targetRoom!==activeRoomId||targetUser!==sessionUser?.id)return;
+   const latitude=position.coords.latitude,longitude=position.coords.longitude;
+   if(!isValidPoint({lat:latitude,lng:longitude}))throw Error('잘못된 위치 좌표입니다.');
+   const {error}=await db.from('room_live_locations').upsert({room_id:targetRoom,user_id:targetUser,latitude,longitude,accuracy_m:Math.round(position.coords.accuracy||0),updated_at:new Date().toISOString()},{onConflict:'room_id,user_id'});
+   if(error)throw error;
+   scheduleRoomRefresh(roomGeneration);
+ }catch(err){
+   $('roomMemberLocations').textContent='위치 전송 실패: '+(err.message||'위치 권한을 확인하세요.');
+   await stopRoomSharing();
+ }finally{liveBusy=false;}
+}
+$('roomSelect').addEventListener('change',async e=>{
+ if(e.target.value&&!sessionUser){$('roomSelect').value='';showAuth();return;}
+ await chooseRoom(e.target.value);
+});
+$('startRoomLocation').addEventListener('click',async()=>{
+ if(!activeRoomId||!sessionUser)return;
+ liveSharing=true;updateRoomControls();
+ await publishMyLocation();
+ if(liveSharing)liveLocationTimer=setInterval(()=>{if(!document.hidden)publishMyLocation();},15000);
+});
+$('stopRoomLocation').addEventListener('click',async()=>{await stopRoomSharing();await refreshRoomLocations();});
+document.addEventListener('visibilitychange',()=>{
+ // 보이지 않는 탭에서 실시간 위치 송신을 계속하지 않음
+ if(document.hidden&&liveSharing)stopRoomSharing();
+ else if(!document.hidden&&activeRoomId)refreshRoomLocations();
+});
+window.addEventListener('pagehide',()=>{
+ if(liveLocationTimer)clearInterval(liveLocationTimer);
+ // 브라우저 종료 시 요청은 보장되지 않으므로 서버의 2분 만료 정책이 최종 안전장치
+});
+
 async function syncProfile(){
  if(!sessionUser||!db)return;
  const {data:userResult}=await db.auth.getUser();const desired=userResult?.user?.user_metadata?.desired_username;
@@ -598,10 +796,10 @@ async function updateSession(){
  if(!db)return;const {data}=await db.auth.getUser();sessionUser=data.user||null;
  $('openAuth').hidden=!!sessionUser;$('openRooms').hidden=!sessionUser;$('logoutBtn').hidden=!sessionUser;
  $('whoami').hidden=!sessionUser;$('whoami').textContent=sessionUser?sessionUser.email:'';
- if(sessionUser)await syncProfile();else $('roomsPage').hidden=true;
+ if(sessionUser){await syncProfile();await loadRoomOptions();}else{if(activeRoomId)await chooseRoom('');$('roomsPage').hidden=true;await loadRoomOptions();}
 }
-$('logoutBtn').addEventListener('click',async()=>{if(db)await db.auth.signOut();});
-$('openRooms').addEventListener('click',async()=>{$('roomsPage').hidden=false;await refreshRooms();});
+$('logoutBtn').addEventListener('click',async()=>{if(liveSharing)await stopRoomSharing();if(activeRoomId)await chooseRoom('');if(db)await db.auth.signOut();});
+$('openRooms').addEventListener('click',async()=>{$('roomsPage').hidden=false;await refreshRooms();await loadRoomOptions();});
 $('closeRooms').addEventListener('click',()=>{$('roomsPage').hidden=true;});
 async function refreshRooms(){
  if(!sessionUser||!db)return;
@@ -655,7 +853,7 @@ $('createRoomForm').addEventListener('submit',async e=>{
  e.preventDefault();if(!sessionUser)return;
  const {error}=await db.rpc('create_jm_room',{p_title:$('newRoomName').value.trim()});
  message('roomFeedback',error?'모임 생성 실패: '+error.message:'모임을 만들었어요! 초대 링크를 공유해 보세요.');
- if(!error){$('newRoomName').value='';await refreshRooms();}
+ if(!error){$('newRoomName').value='';await refreshRooms();await loadRoomOptions();}
 });
 async function joinRoom(value){
  const raw=value.trim(),code=(raw.match(/[?&]invite=([^&#]+)/)||[])[1];
@@ -663,7 +861,7 @@ async function joinRoom(value){
  if(!/^[a-f0-9]{32}$/i.test(inviteCode)){message('roomFeedback','올바른 초대 코드 또는 링크를 입력해 주세요.');return;}
  const {error}=await db.rpc('join_jm_room',{p_code:inviteCode});
  message('roomFeedback',error?'참여 실패: '+error.message:'모임에 참여했어요!');
- if(!error){$('joinRoomForm').reset();await refreshRooms();}
+ if(!error){$('joinRoomForm').reset();await refreshRooms();await loadRoomOptions();}
 }
 $('joinRoomForm').addEventListener('submit',async e=>{e.preventDefault();if(sessionUser)await joinRoom($('inviteInput').value);});
 async function setupSupabase(){
